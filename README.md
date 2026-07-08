@@ -6,6 +6,9 @@ Un sistema de gestion para barberias: turnos, ventas del dia, conversaciones con
 
 ---
 
+## Demo en vivo
+👉 https://sistema-barberia-three.vercel.app
+
 ## Sumate a la comunidad (gratis)
 
 Estás aprendiendo a crear sistemas como este con Claude Code, entrá a la comunidad gratuita de WhatsApp. Ahí comparto cómo se hacen desde cero.
