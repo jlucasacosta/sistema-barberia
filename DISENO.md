@@ -70,7 +70,7 @@ La agenda como **grilla-semana por barbero**: columnas = barberos/sillas, filas 
 | **contactos** | **tabla-densa** | Ficha de cliente en filas compactas: última visita, barbero fijo, servicio habitual, gasto acumulado. Numerales en Bebas. |
 | **conversaciones** | **master-detail** | Lista de hilos a la izquierda (avatar + preview + hora), conversación abierta a la derecha. Burbujas en crema/oxblood. |
 | **config** | **acordeón** | Secciones colapsables (local, barberos, servicios+precios, horarios, notificaciones). Cabeceras en Bebas con filete latón; una abierta a la vez. |
-| **dashboard** | **board** | Hub de widgets de reojo al cierre: **anillos de ocupación** por barbero, **mini-grilla del día** (versión reducida de La Silla), y **barras-ranking** del top barberos/servicios. Sin gráfico pesado. |
+| **dashboard** | **board** | Hub de widgets de reojo al cierre: **anillos de ocupación** por barbero, **mini-grilla del día** (versión reducida de Agenda), y **barras-ranking** del top barberos/servicios. Sin gráfico pesado. |
 
 **KPI = anillos** (ocupación % por barbero/silla) · **Gráfico = barras-ranking** (top barberos/servicios del período). Combo anillos+ranking inédito en la colección (inmob = barra-metas+heatmap; resto = ticker+barras-verticales).
 
@@ -80,7 +80,7 @@ La agenda como **grilla-semana por barbero**: columnas = barberos/sillas, filas 
 
 ---
 
-## 7. Componente estrella — "La Silla" (grilla-semana multi-barbero)
+## 7. Componente estrella — "Agenda" (grilla-semana multi-barbero)
 
 La espina del sistema. Vive a pantalla completa en **agenda** y en versión reducida en **dashboard**.
 
@@ -112,4 +112,4 @@ Grilla-semana con **barberos-avatar arriba de cada columna** y un turno que **sa
 
 ## 10. Veredicto
 
-**PASA.** Piel diferenciada de ambos vecinos en 6-7 palancas. Esqueleto con dos arquetipos que nadie usa (agenda=grilla-semana, ventas=kanban), combo KPI+gráfico inédito (anillos+barras-ranking), iconos sin-iconos frente al lucide-grueso vecino, estrella propia (La Silla) y un componente del patrón por defecto eliminado (buscador). Correcciones del Abogado aplicadas: iconos = sin-iconos, accent a oxblood con latón sólo de filete, `pendiente` en ámbar frío separado del latón, y la estrella cerrada en la grilla (no en el poste giratorio) para no reintroducir el cliché vetado.
+**PASA.** Piel diferenciada de ambos vecinos en 6-7 palancas. Esqueleto con dos arquetipos que nadie usa (agenda=grilla-semana, ventas=kanban), combo KPI+gráfico inédito (anillos+barras-ranking), iconos sin-iconos frente al lucide-grueso vecino, estrella propia (Agenda) y un componente del patrón por defecto eliminado (buscador). Correcciones del Abogado aplicadas: iconos = sin-iconos, accent a oxblood con latón sólo de filete, `pendiente` en ámbar frío separado del latón, y la estrella cerrada en la grilla (no en el poste giratorio) para no reintroducir el cliché vetado.

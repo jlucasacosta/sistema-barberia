@@ -15,9 +15,9 @@ const barberos = [
 
 const notificaciones = [
   { label: "Recordatorio de turno por WhatsApp", on: true },
-  { label: "Aviso de silla libre para walk-ins", on: true },
+  { label: "Aviso de silla libre para clientes sin turno", on: true },
   { label: "Encuesta post-servicio", on: false },
-  { label: "Promo de cumpleanos del cliente", on: true },
+  { label: "Promocion de cumpleanos del cliente", on: true },
 ]
 
 export function ConfigPage() {

@@ -83,7 +83,7 @@ export function DashboardPage() {
 
       {/* Mini "La Silla" */}
       <section className="mt-6">
-        <h2 className="filete inline-block font-heading text-2xl tracking-wide text-fg">LA SILLA · HOY</h2>
+        <h2 className="filete inline-block font-heading text-2xl tracking-wide text-fg">AGENDA · HOY</h2>
         <div className="mt-3 flex gap-3 overflow-x-auto pb-2">
           {barberos.map((b) => {
             const suyos = turnos
