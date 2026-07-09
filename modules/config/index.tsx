@@ -13,17 +13,42 @@ function Row({ label, value, swatch }: { label: string; value: string; swatch?: 
 }
 
 export function ConfigPage() {
+  const c = theme.colors
   return (
     <div className="space-y-8">
       <h1 className="font-heading text-2xl font-semibold">Configuracion</h1>
-      <div className="max-w-md space-y-4 rounded-xl bg-surface p-6 shadow-card">
-        <Row label="Marca" value={theme.brand.name} />
-        <Row label="Color primario" value={theme.colors.primary} swatch />
-        <Row label="Color acento" value={theme.colors.accent} swatch />
-        <Row label="Tipografia" value={theme.font.heading} />
-        <Row label="Bordes" value={theme.radius} />
-        <Row label="Densidad" value={theme.density} />
-        <p className="pt-2 text-xs text-muted">
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        <div className="space-y-4 rounded-xl bg-surface p-6 shadow-card">
+          <h2 className="font-heading text-base font-semibold">Marca</h2>
+          <Row label="Nombre" value={theme.brand.name} />
+          <Row label="Tipografia" value={theme.font.heading} />
+          <Row label="Bordes" value={theme.radius} />
+          <Row label="Densidad" value={theme.density} />
+        </div>
+
+        <div className="space-y-4 rounded-xl bg-surface p-6 shadow-card">
+          <h2 className="font-heading text-base font-semibold">Paleta</h2>
+          <Row label="Primario" value={c.primary} swatch />
+          <Row label="Acento" value={c.accent} swatch />
+          <Row label="Exito" value={c.success} swatch />
+          <Row label="Alerta" value={c.warning} swatch />
+          <Row label="Error" value={c.danger} swatch />
+          <Row label="Info" value={c.info} swatch />
+        </div>
+      </div>
+
+      <div className="rounded-xl bg-surface p-6 shadow-card">
+        <h2 className="mb-4 font-heading text-base font-semibold">Estados</h2>
+        <div className="flex flex-wrap gap-2">
+          <span className="rounded-full bg-success/15 px-2.5 py-0.5 text-xs text-success">exito</span>
+          <span className="rounded-full bg-warning/15 px-2.5 py-0.5 text-xs text-warning">alerta</span>
+          <span className="rounded-full bg-danger/15 px-2.5 py-0.5 text-xs text-danger">error</span>
+          <span className="rounded-full bg-info/15 px-2.5 py-0.5 text-xs text-info">info</span>
+          <span className="rounded-full bg-primary/15 px-2.5 py-0.5 text-xs text-primary">primario</span>
+          <span className="rounded-full bg-accent/15 px-2.5 py-0.5 text-xs text-accent">acento</span>
+        </div>
+        <p className="pt-4 text-xs text-muted">
           Todo esto sale de shell/theme.ts. Cambias un archivo y muta el sistema entero.
         </p>
       </div>

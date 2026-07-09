@@ -3,24 +3,28 @@
 @tailwind utilities;
 
 :root {
-  /* Fallbacks. El layout inyecta los valores reales del theme activo (Navaja). */
-  --primary: #1c1a17;
-  --accent: #c0392b;
-  --bg: #f5f3ef;
-  --surface: #ffffff;
-  --fg: #1c1a17;
-  --muted: #7a736a;
-  --border: #e7e2da;
-  --subtle: #efeae2;
+  /* Fallbacks en triplete "R G B". El layout inyecta los valores reales del theme (Navaja). */
+  --primary: 28 26 23;
+  --accent: 201 150 45;
+  --bg: 245 243 239;
+  --surface: 255 255 255;
+  --fg: 28 26 23;
+  --muted: 122 115 106;
+  --border: 231 226 218;
+  --subtle: 239 234 226;
+  --success: 22 163 74;
+  --warning: 217 119 6;
+  --danger: 220 38 38;
+  --info: 2 132 199;
   --radius: 6px;
   --pad: 20px;
   --font-heading: Inter, system-ui, sans-serif;
   --font-body: Inter, system-ui, sans-serif;
 
-  /* Sistema de elevacion tech (sombras suaves en capas, tono calido) */
-  --shadow-sm: 0 1px 2px rgb(28 26 23 / 0.04), 0 1px 3px rgb(28 26 23 / 0.06);
-  --shadow-card: 0 1px 3px rgb(28 26 23 / 0.06), 0 6px 16px rgb(28 26 23 / 0.05);
-  --shadow-pop: 0 6px 16px rgb(28 26 23 / 0.08), 0 16px 32px rgb(28 26 23 / 0.10);
+  /* Sistema de elevacion en claro: la sombra levanta con tinte slate, el borde separa. */
+  --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.04), 0 1px 3px rgb(15 23 42 / 0.06);
+  --shadow-card: 0 1px 3px rgb(15 23 42 / 0.06), 0 6px 16px rgb(15 23 42 / 0.05);
+  --shadow-pop: 0 6px 16px rgb(15 23 42 / 0.08), 0 16px 32px rgb(15 23 42 / 0.10);
 }
 
 html {

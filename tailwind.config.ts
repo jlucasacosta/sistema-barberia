@@ -1,5 +1,8 @@
 import type { Config } from "tailwindcss"
 
+// Cada color es "rgb(var(--x) / <alpha-value>)": habilita bg-success/15 sin hardcodear.
+const token = (name: string) => `rgb(var(--${name}) / <alpha-value>)`
+
 export default {
   content: [
     "./app/**/*.{ts,tsx}",
@@ -9,14 +12,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "var(--primary)",
-        accent: "var(--accent)",
-        bg: "var(--bg)",
-        surface: "var(--surface)",
-        fg: "var(--fg)",
-        muted: "var(--muted)",
-        border: "var(--border)",
-        subtle: "var(--subtle)",
+        primary: token("primary"),
+        accent: token("accent"),
+        bg: token("bg"),
+        surface: token("surface"),
+        fg: token("fg"),
+        muted: token("muted"),
+        border: token("border"),
+        subtle: token("subtle"),
+        success: token("success"),
+        warning: token("warning"),
+        danger: token("danger"),
+        info: token("info"),
       },
       borderRadius: {
         DEFAULT: "var(--radius)",
