@@ -1,12 +1,12 @@
-import { LayoutDashboard, MessageSquare, CalendarClock, Banknote, Users, Settings, type LucideIcon } from "lucide-react"
-
-export type NavItem = { label: string; href: string; icon: LucideIcon }
+// nav-config.ts · Las secciones del sistema. SIN-ICONOS (ficha §6): la estetica de
+// cartel esmaltado se apoya en tipografia (Bebas) y numerales, no en glifos.
+export type NavItem = { label: string; href: string }
 
 export const nav: NavItem[] = [
-  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { label: "Turnos", href: "/agenda", icon: CalendarClock },
-  { label: "Conversaciones", href: "/conversaciones", icon: MessageSquare },
-  { label: "Ventas", href: "/ventas", icon: Banknote },
-  { label: "Contactos", href: "/contactos", icon: Users },
-  { label: "Configuracion", href: "/config", icon: Settings },
+  { label: "Dashboard", href: "/dashboard" },
+  { label: "La Silla", href: "/agenda" },
+  { label: "Conversaciones", href: "/conversaciones" },
+  { label: "Ventas", href: "/ventas" },
+  { label: "Contactos", href: "/contactos" },
+  { label: "Config", href: "/config" },
 ]

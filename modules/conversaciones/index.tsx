@@ -1,117 +1,104 @@
 "use client"
+// CONVERSACIONES · arquetipo master-detail. Hilos a la izquierda, conversacion
+// abierta a la derecha. Burbujas en crema (cliente) / oxblood (local). Color de tokens.
 import { useEffect, useState } from "react"
-import { Send } from "lucide-react"
-import { getThreads, getMessages, type Thread, type Message } from "./api"
-
-const iniciales = (n: string) =>
-  n
-    .split(" ")
-    .slice(0, 2)
-    .map((p) => p[0])
-    .join("")
-
-// Tinte estable por hilo: mismo hilo, mismo color. Todo sale de tokens del theme.
-const tints = [
-  "bg-primary/15 text-primary",
-  "bg-info/15 text-info",
-  "bg-success/15 text-success",
-  "bg-accent/15 text-accent",
-  "bg-warning/15 text-warning",
-]
-const tintOf = (id: string) => tints[Number(id) % tints.length]
+import { getHilos, type Hilo } from "./api"
 
 export function ConversacionesPage() {
-  const [threads, setThreads] = useState<Thread[]>([])
-  const [active, setActive] = useState<string | null>(null)
-  const [msgs, setMsgs] = useState<Message[]>([])
+  const [hilos, setHilos] = useState<Hilo[]>([])
+  const [activo, setActivo] = useState<string | null>(null)
 
   useEffect(() => {
-    getThreads().then((t) => {
-      setThreads(t)
-      setActive(t[0]?.id ?? null)
+    getHilos().then((h) => {
+      setHilos(h)
+      setActivo(h[0]?.id ?? null)
     })
   }, [])
 
-  useEffect(() => {
-    if (active) getMessages(active).then(setMsgs)
-  }, [active])
-
-  const actual = threads.find((t) => t.id === active)
+  const hilo = hilos.find((h) => h.id === activo) ?? null
 
   return (
-    <div className="flex h-[calc(100vh-2*var(--pad))] gap-5">
-      <div className="w-80 shrink-0 overflow-y-auto rounded-xl bg-surface p-2 shadow-card">
-        {threads.map((t) => (
-          <button
-            key={t.id}
-            onClick={() => setActive(t.id)}
-            className={
-              "flex w-full items-start gap-3 rounded-lg p-3 text-left transition-colors " +
-              (active === t.id ? "bg-subtle" : "hover:bg-subtle")
-            }
-          >
-            <span
-              className={
-                "flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-semibold " + tintOf(t.id)
-              }
-            >
-              {iniciales(t.name)}
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="truncate font-medium">{t.name}</p>
-              <p className="truncate text-sm text-muted">{t.last}</p>
-            </div>
-            <div className="flex flex-col items-end gap-1">
-              <span className="text-xs text-muted">{t.time}</span>
-              {t.unread > 0 && (
-                <span className="rounded-full bg-accent px-1.5 py-0.5 text-xs font-semibold text-bg">{t.unread}</span>
-              )}
-            </div>
-          </button>
-        ))}
-      </div>
+    <div className="mx-auto max-w-[1300px]">
+      <h1 className="font-heading text-4xl tracking-wide text-fg">CONVERSACIONES</h1>
+      <p className="mt-1 text-sm text-muted">
+        <span className="font-heading text-lg text-accent">{hilos.reduce((a, h) => a + h.sinLeer, 0)}</span> sin leer ·{" "}
+        {hilos.length} hilos
+      </p>
 
-      <div className="flex flex-1 flex-col overflow-hidden rounded-xl bg-surface shadow-card">
-        {actual && (
-          <div className="flex items-center gap-3 border-b border-border px-6 py-4">
-            <span
-              className={
-                "flex h-9 w-9 items-center justify-center rounded-full text-xs font-semibold " + tintOf(actual.id)
-              }
-            >
-              {iniciales(actual.name)}
-            </span>
-            <div>
-              <p className="font-medium">{actual.name}</p>
-              <p className="flex items-center gap-1.5 text-xs text-muted">
-                <span className="h-1.5 w-1.5 rounded-full bg-success" />
-                en linea
-              </p>
-            </div>
-          </div>
-        )}
-        <div className="flex-1 space-y-3 overflow-y-auto p-6">
-          {msgs.map((m) => (
-            <div
-              key={m.id}
-              className={
-                "max-w-[70%] rounded-xl px-3 py-2 text-sm " +
-                (m.from === "vos" ? "ml-auto bg-primary text-bg" : "bg-subtle")
-              }
-            >
-              {m.text}
-              <span className="mt-1 block text-xs opacity-60">{m.time}</span>
-            </div>
-          ))}
+      <div className="mt-5 grid gap-0 overflow-hidden rounded-xl border border-border md:grid-cols-[320px_1fr]" style={{ height: "calc(100vh - 210px)" }}>
+        {/* Master: lista de hilos */}
+        <div className="overflow-y-auto border-b border-border bg-surface md:border-b-0 md:border-r">
+          {hilos.map((h) => {
+            const active = h.id === activo
+            return (
+              <button
+                key={h.id}
+                onClick={() => setActivo(h.id)}
+                className={
+                  "flex w-full items-center gap-3 border-b border-border/70 px-3 py-2.5 text-left transition-colors " +
+                  (active ? "bg-accent/10" : "hover:bg-subtle/50")
+                }
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary font-heading text-lg tracking-wide text-surface">
+                  {h.inicial}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="truncate font-medium text-fg">{h.cliente}</span>
+                    <span className="shrink-0 text-[11px] text-muted">{h.hora}</span>
+                  </div>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="truncate text-xs text-muted">{h.preview}</span>
+                    {h.sinLeer > 0 && (
+                      <span className="chip shrink-0 bg-accent text-surface">{h.sinLeer}</span>
+                    )}
+                  </div>
+                </div>
+              </button>
+            )
+          })}
         </div>
-        <div className="flex items-center gap-2 border-t border-border p-4">
-          <input
-            placeholder="Escribi un mensaje..."
-            className="w-full rounded-lg bg-subtle px-3 py-2 text-sm outline-none transition-shadow focus:shadow-sm"
-          />
-          <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary text-bg transition-opacity hover:opacity-90">
-            <Send size={16} />
-          </button>
+
+        {/* Detail: conversacion abierta */}
+        <div className="flex flex-col bg-bg">
+          {hilo ? (
+            <>
+              <div className="flex items-center gap-3 border-b-2 border-laton/50 bg-surface px-4 py-3">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary font-heading text-xl tracking-wide text-surface">
+                  {hilo.inicial}
+                </span>
+                <div>
+                  <div className="font-heading text-xl tracking-wide text-fg">{hilo.cliente}</div>
+                  <div className="text-xs text-muted">{hilo.canal}</div>
+                </div>
+              </div>
+              <div className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+                {hilo.mensajes.map((m, i) => {
+                  const local = m.de === "local"
+                  return (
+                    <div key={i} className={"flex " + (local ? "justify-end" : "justify-start")}>
+                      <div
+                        className={
+                          "max-w-[75%] rounded-lg px-3 py-2 text-sm " +
+                          (local ? "bg-accent text-surface" : "border border-border bg-surface text-fg")
+                        }
+                      >
+                        <p>{m.texto}</p>
+                        <span className={"mt-1 block text-[10px] " + (local ? "text-surface/70" : "text-muted")}>{m.hora}</span>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+              <div className="border-t border-border bg-surface px-4 py-3">
+                <div className="flex items-center gap-2 rounded-lg border border-border bg-bg px-3 py-2 text-sm text-muted">
+                  Escribi una respuesta&hellip;
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="flex flex-1 items-center justify-center font-heading tracking-widest text-muted">SIN HILO</div>
+          )}
         </div>
       </div>
     </div>

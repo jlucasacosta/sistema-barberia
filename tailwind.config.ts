@@ -14,6 +14,7 @@ export default {
       colors: {
         primary: token("primary"),
         accent: token("accent"),
+        laton: token("laton"),
         bg: token("bg"),
         surface: token("surface"),
         fg: token("fg"),

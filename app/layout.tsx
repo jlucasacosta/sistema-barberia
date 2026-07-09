@@ -1,16 +1,17 @@
 import "./globals.css"
 import type { ReactNode, CSSProperties } from "react"
 import { theme } from "@/shell/theme"
-import { Sidebar } from "@/shell/sidebar"
+import { fontClass } from "@/shell/fonts"
+import { Nav } from "@/shell/nav"
 
-// Traduce el theme (declarativo) a variables CSS que Tailwind consume.
+// Traduce el theme (declarativo) a variables CSS que Tailwind y globals.css consumen.
 // Los colores viajan como triplete "R G B" para que Tailwind pueda aplicarles
-// opacidad (bg-success/15) sin que ningun componente escriba un color a mano.
-const radiusMap = { sharp: "6px", soft: "10px", round: "14px" }
+// opacidad (bg-accent/15) sin que ningun componente escriba un color a mano.
+const radiusMap = { sharp: "4px", soft: "10px", round: "16px" }
 const densityMap = { compact: "12px", comfortable: "20px" }
+const badgeMap = { pill: "9999px", square: "4px" }
 
-// En claro la sombra levanta (tinte slate). En oscuro hunde (negro puro).
-const shadowMap = {
+const shadow = {
   light: {
     sm: "0 1px 2px rgb(15 23 42 / 0.04), 0 1px 3px rgb(15 23 42 / 0.06)",
     card: "0 1px 3px rgb(15 23 42 / 0.06), 0 6px 16px rgb(15 23 42 / 0.05)",
@@ -21,6 +22,19 @@ const shadowMap = {
     card: "0 1px 3px rgb(0 0 0 / 0.45), 0 8px 24px rgb(0 0 0 / 0.35)",
     pop: "0 2px 6px rgb(0 0 0 / 0.5), 0 18px 40px rgb(0 0 0 / 0.45)",
   },
+}
+
+// `elevation: flat` (Navaja) = sin sombra y sin borde: la separacion la hacen
+// el color (crema vs marfil) y el aire.
+function elevationVars(): Record<string, string> {
+  const s = shadow[theme.mode]
+  if (theme.elevation === "raised") {
+    return { "--shadow-sm": s.sm, "--shadow-card": s.card, "--shadow-pop": s.pop, "--card-border": "0 solid transparent" }
+  }
+  if (theme.elevation === "outlined") {
+    return { "--shadow-sm": "none", "--shadow-card": "none", "--shadow-pop": s.sm, "--card-border": "1px solid rgb(var(--border))" }
+  }
+  return { "--shadow-sm": "none", "--shadow-card": "none", "--shadow-pop": "none", "--card-border": "0 solid transparent" }
 }
 
 function rgb(hex: string) {
@@ -34,10 +48,10 @@ export const metadata = { title: "Sistema", description: "Demo" }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const c = theme.colors
-  const s = shadowMap[theme.mode]
   const vars = {
     "--primary": rgb(c.primary),
     "--accent": rgb(c.accent),
+    "--laton": rgb(c.laton),
     "--bg": rgb(c.bg),
     "--surface": rgb(c.surface),
     "--fg": rgb(c.fg),
@@ -50,18 +64,19 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     "--info": rgb(c.info),
     "--radius": radiusMap[theme.radius],
     "--pad": densityMap[theme.density],
-    "--shadow-sm": s.sm,
-    "--shadow-card": s.card,
-    "--shadow-pop": s.pop,
-    "--font-heading": theme.font.heading + ", system-ui, sans-serif",
-    "--font-body": theme.font.body + ", system-ui, sans-serif",
+    "--badge-radius": badgeMap[theme.badge],
+    "--font-heading": "var(--font-heading-src), system-ui, sans-serif",
+    "--font-body": "var(--font-body-src), system-ui, sans-serif",
+    ...elevationVars(),
   } as CSSProperties
+
+  const stacked = theme.nav === "topbar"
 
   return (
     <html lang="es">
-      <body style={vars}>
-        <div className="flex min-h-screen bg-bg text-fg">
-          <Sidebar />
+      <body className={fontClass} style={vars}>
+        <div className={"min-h-screen bg-bg text-fg " + (stacked ? "flex flex-col" : "flex")}>
+          <Nav />
           <main className="flex-1 overflow-x-hidden p-[var(--pad)]">{children}</main>
         </div>
       </body>

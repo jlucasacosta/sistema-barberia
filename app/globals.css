@@ -4,27 +4,102 @@
 
 :root {
   /* Fallbacks en triplete "R G B". El layout inyecta los valores reales del theme (Navaja). */
-  --primary: 28 26 23;
-  --accent: 201 150 45;
-  --bg: 245 243 239;
-  --surface: 255 255 255;
-  --fg: 28 26 23;
-  --muted: 122 115 106;
-  --border: 231 226 218;
-  --subtle: 239 234 226;
-  --success: 22 163 74;
-  --warning: 217 119 6;
-  --danger: 220 38 38;
-  --info: 2 132 199;
-  --radius: 6px;
+  --primary: 23 19 15;
+  --accent: 122 46 46;
+  --laton: 181 137 63;
+  --bg: 244 238 227;
+  --surface: 252 250 244;
+  --fg: 23 19 15;
+  --muted: 138 123 104;
+  --border: 224 214 196;
+  --subtle: 236 228 213;
+  --success: 78 122 84;
+  --warning: 201 118 31;
+  --danger: 178 58 46;
+  --info: 91 107 114;
+  --radius: 10px;
   --pad: 20px;
-  --font-heading: Inter, system-ui, sans-serif;
-  --font-body: Inter, system-ui, sans-serif;
+  --badge-radius: 4px;
+  --card-border: 0 solid transparent;
+  --font-heading: system-ui, sans-serif;
+  --font-body: system-ui, sans-serif;
 
-  /* Sistema de elevacion en claro: la sombra levanta con tinte slate, el borde separa. */
-  --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.04), 0 1px 3px rgb(15 23 42 / 0.06);
-  --shadow-card: 0 1px 3px rgb(15 23 42 / 0.06), 0 6px 16px rgb(15 23 42 / 0.05);
-  --shadow-pop: 0 6px 16px rgb(15 23 42 / 0.08), 0 16px 32px rgb(15 23 42 / 0.10);
+  /* Elevation FLAT: sin sombra. La separacion la hacen color y aire. */
+  --shadow-sm: none;
+  --shadow-card: none;
+  --shadow-pop: none;
+}
+
+/* La scrollbar es parte del diseño, no un accidente del navegador.
+   Importa sobre todo en la grilla ancha de La Silla y en el kanban. */
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--laton) / 0.55) transparent;
+  }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--laton) / 0.55);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--accent) / 0.7);
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-corner { background: transparent; }
+}
+
+@layer components {
+  /* Lamina mate flat: sin sombra ni borde. El color de superficie la separa del papel. */
+  .surface-card {
+    background: rgb(var(--surface));
+    border-radius: calc(var(--radius) + 4px);
+    box-shadow: var(--shadow-card);
+    border: var(--card-border);
+  }
+  /* Chip square tipo cartel esmaltado. */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: var(--badge-radius);
+    padding: 0.125rem 0.5rem;
+    font-size: 0.7rem;
+    line-height: 1.1rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  /* Filete de laton: subrayado metalico fino bajo un rotulo. */
+  .filete {
+    border-bottom: 2px solid rgb(var(--laton) / 0.65);
+  }
+  /* Hueco vendible: crema con contorno punteado laton. */
+  .libre {
+    border: 1.5px dashed rgb(var(--laton) / 0.55);
+    background: rgb(var(--subtle) / 0.5);
+  }
+}
+
+/* La linea "ahora" late suave (laton). Es el frame que se graba. */
+@keyframes pulso-ahora {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 0.45; }
+}
+.linea-ahora { animation: pulso-ahora 2.4s ease-in-out infinite; }
+
+/* Flash verde cuando un turno pasa a CONFIRMADO. */
+@keyframes flash-confirmar {
+  0% { background: rgb(var(--success) / 0.35); }
+  100% { background: transparent; }
+}
+.flash-confirmar { animation: flash-confirmar 850ms ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .linea-ahora, .flash-confirmar { animation: none; }
 }
 
 html {
@@ -32,4 +107,4 @@ html {
   text-rendering: optimizeLegibility;
 }
 body { font-family: var(--font-body); }
-h1, h2, h3 { letter-spacing: -0.012em; }
+h1, h2, h3 { font-family: var(--font-heading); letter-spacing: 0.02em; }

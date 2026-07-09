@@ -1,76 +1,79 @@
-// PATRON MOCK. Misma firma que la query real. Reetiquetado para barberia.
-export type Thread = { id: string; name: string; last: string; time: string; unread: number }
-export type Message = { id: string; from: "cliente" | "vos"; text: string; time: string }
+// PATRON MOCK. Misma firma que la query real. Ver BACKEND.md.
+// Inbox master-detail: hilos a la izquierda, conversacion a la derecha.
+// En el backend real los hilos salen de `conversaciones` y los mensajes de `mensajes`.
+export type Mensaje = { de: "cliente" | "local"; texto: string; hora: string }
+export type Hilo = {
+  id: string
+  cliente: string
+  inicial: string
+  canal: "WhatsApp" | "Instagram"
+  preview: string
+  hora: string
+  sinLeer: number
+  mensajes: Mensaje[]
+}
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
-export async function getThreads(): Promise<Thread[]> {
-  await sleep(300)
+// 14 hilos.
+export async function getHilos(): Promise<Hilo[]> {
+  await sleep(240)
   return [
-    { id: "1", name: "Bruno Alvarez", last: "Perfecto, saco turno para el sabado", time: "15:02", unread: 1 },
-    { id: "2", name: "Thiago Molina", last: "Hacen diseno con maquina?", time: "14:38", unread: 2 },
-    { id: "3", name: "Lucas Ferreyra", last: "Cuanto sale corte + barba?", time: "13:55", unread: 0 },
-    { id: "4", name: "Emiliano Sosa", last: "Se me hizo tarde, puedo llegar 10 min despues?", time: "13:20", unread: 3 },
-    { id: "5", name: "Kevin Maidana", last: "El color lo hacen el mismo dia?", time: "12:47", unread: 1 },
-    { id: "6", name: "Franco Villalba", last: "Atienden sin turno los martes?", time: "12:10", unread: 0 },
-    { id: "7", name: "Matias Ojeda", last: "Tengo que cancelar el de las 12, disculpa", time: "11:32", unread: 0 },
-    { id: "8", name: "Santiago Correa", last: "Aceptan transferencia?", time: "11:05", unread: 1 },
-    { id: "9", name: "Ivan Rios", last: "Gracias, quedo excelente el degrade", time: "10:40", unread: 0 },
-    { id: "10", name: "Benjamin Toledo", last: "Cortan a nenes de 6 anios?", time: "10:12", unread: 0 },
-    { id: "11", name: "Agustin Miranda", last: "Fede trabaja este viernes?", time: "09:38", unread: 0 },
-    { id: "12", name: "Ezequiel Ponce", last: "Me paso la direccion de nuevo?", time: "09:04", unread: 2 },
-    { id: "13", name: "Lautaro Godoy", last: "Listo, nos vemos a las 16", time: "Ayer", unread: 0 },
-    { id: "14", name: "Gaston Vega", last: "Todo bien, gracias por avisar", time: "Ayer", unread: 0 },
+    { id: "h1", cliente: "Gaston Rivero", inicial: "GR", canal: "WhatsApp", preview: "Perfecto, confirmo el combo a las 11", hora: "09:12", sinLeer: 2, mensajes: [
+      { de: "cliente", texto: "Hola! Tienen lugar hoy a la manana?", hora: "09:02" },
+      { de: "local", texto: "Buenas Gaston! Si, 11:00 con Tobias. Corte + barba?", hora: "09:08" },
+      { de: "cliente", texto: "Perfecto, confirmo el combo a las 11", hora: "09:12" },
+    ] },
+    { id: "h2", cliente: "Ezequiel Sosa", inicial: "ES", canal: "Instagram", preview: "Se puede pagar con QR?", hora: "08:47", sinLeer: 1, mensajes: [
+      { de: "cliente", texto: "Buenas, cuanto sale la barba?", hora: "08:40" },
+      { de: "local", texto: "Hola Ezequiel! La barba $350, perfilado $300.", hora: "08:44" },
+      { de: "cliente", texto: "Se puede pagar con QR?", hora: "08:47" },
+    ] },
+    { id: "h3", cliente: "Andres Godoy", inicial: "AG", canal: "WhatsApp", preview: "Primera vez que voy, gracias!", hora: "08:20", sinLeer: 0, mensajes: [
+      { de: "cliente", texto: "Me recomendaron el lugar, tienen turno hoy?", hora: "08:10" },
+      { de: "local", texto: "Bienvenido! 14:30 con Emiliano libre.", hora: "08:15" },
+      { de: "cliente", texto: "Primera vez que voy, gracias!", hora: "08:20" },
+    ] },
+    { id: "h4", cliente: "Marco Aramburu", inicial: "MA", canal: "WhatsApp", preview: "Dale, muevo el turno a las 15", hora: "Ayer", sinLeer: 0, mensajes: [
+      { de: "local", texto: "Marco, se nos corrio la agenda. Te paso a las 15?", hora: "Ayer" },
+      { de: "cliente", texto: "Dale, muevo el turno a las 15", hora: "Ayer" },
+    ] },
+    { id: "h5", cliente: "Bruno Ferre", inicial: "BF", canal: "Instagram", preview: "Tienen cera fijadora en venta?", hora: "Ayer", sinLeer: 1, mensajes: [
+      { de: "cliente", texto: "Tienen cera fijadora en venta?", hora: "Ayer" },
+    ] },
+    { id: "h6", cliente: "Damian Roldan", inicial: "DR", canal: "WhatsApp", preview: "Gracias, nos vemos el jueves", hora: "Ayer", sinLeer: 0, mensajes: [
+      { de: "local", texto: "Listo Damian, jueves 18:00 con Ramiro.", hora: "Ayer" },
+      { de: "cliente", texto: "Gracias, nos vemos el jueves", hora: "Ayer" },
+    ] },
+    { id: "h7", cliente: "Federico Nunez", inicial: "FN", canal: "WhatsApp", preview: "Puedo llevar a mi hijo tambien?", hora: "Ayer", sinLeer: 3, mensajes: [
+      { de: "cliente", texto: "Hola, atienden ninos?", hora: "Ayer" },
+      { de: "cliente", texto: "Puedo llevar a mi hijo tambien?", hora: "Ayer" },
+    ] },
+    { id: "h8", cliente: "Lucas Ibarra", inicial: "LI", canal: "Instagram", preview: "Que horario cierran los sabados?", hora: "Mar", sinLeer: 0, mensajes: [
+      { de: "cliente", texto: "Que horario cierran los sabados?", hora: "Mar" },
+      { de: "local", texto: "Sabados 09:00 a 18:00.", hora: "Mar" },
+    ] },
+    { id: "h9", cliente: "Sergio Villalba", inicial: "SV", canal: "WhatsApp", preview: "El aceite de barba quedo barbaro", hora: "Mar", sinLeer: 0, mensajes: [
+      { de: "cliente", texto: "El aceite de barba quedo barbaro", hora: "Mar" },
+      { de: "local", texto: "Que bueno Sergio! Cualquier cosa avisanos.", hora: "Mar" },
+    ] },
+    { id: "h10", cliente: "Cristian Maldonado", inicial: "CM", canal: "WhatsApp", preview: "Reservo el ritual para el finde", hora: "Lun", sinLeer: 0, mensajes: [
+      { de: "cliente", texto: "Reservo el ritual para el finde", hora: "Lun" },
+      { de: "local", texto: "Perfecto, sabado 10:00 con Emiliano.", hora: "Lun" },
+    ] },
+    { id: "h11", cliente: "Pablo Zarate", inicial: "PZ", canal: "Instagram", preview: "Hacen diseno con maquina?", hora: "Lun", sinLeer: 1, mensajes: [
+      { de: "cliente", texto: "Hacen diseno con maquina?", hora: "Lun" },
+    ] },
+    { id: "h12", cliente: "Julian Escobar", inicial: "JE", canal: "WhatsApp", preview: "Perfecto, ahi confirmo", hora: "Lun", sinLeer: 0, mensajes: [
+      { de: "local", texto: "Julian, tu turno es hoy 09:30.", hora: "Lun" },
+      { de: "cliente", texto: "Perfecto, ahi confirmo", hora: "Lun" },
+    ] },
+    { id: "h13", cliente: "Nahuel Ojeda", inicial: "NO", canal: "WhatsApp", preview: "Disculpen, no voy a poder llegar", hora: "Dom", sinLeer: 0, mensajes: [
+      { de: "cliente", texto: "Disculpen, no voy a poder llegar", hora: "Dom" },
+      { de: "local", texto: "Sin problema Nahuel, reprogramamos.", hora: "Dom" },
+    ] },
+    { id: "h14", cliente: "Agustin Ferrari", inicial: "AF", canal: "Instagram", preview: "Buenisimo, gracias por la atencion", hora: "Dom", sinLeer: 0, mensajes: [
+      { de: "cliente", texto: "Buenisimo, gracias por la atencion", hora: "Dom" },
+    ] },
   ]
-}
-
-const conversaciones: Record<string, Message[]> = {
-  "1": [
-    { id: "1", from: "cliente", text: "Hola! Queria sacar un turno para corte", time: "14:48" },
-    { id: "2", from: "vos", text: "Hola Bruno! Tengo lugar el sabado 11:00 o 16:30", time: "14:52" },
-    { id: "3", from: "cliente", text: "El de las 11 me viene barbaro", time: "14:58" },
-    { id: "4", from: "vos", text: "Listo, te agendo corte + barba a las 11 con Fede", time: "15:00" },
-    { id: "5", from: "cliente", text: "Perfecto, saco turno para el sabado", time: "15:02" },
-  ],
-  "2": [
-    { id: "1", from: "cliente", text: "Buenas! Hacen diseno con maquina?", time: "14:20" },
-    { id: "2", from: "vos", text: "Hola Thiago! Si, Nico hace lineas y diseños", time: "14:26" },
-    { id: "3", from: "cliente", text: "Cuanto sale corte + diseno?", time: "14:31" },
-    { id: "4", from: "vos", text: "Corte + diseño te queda en $ 5.900", time: "14:35" },
-    { id: "5", from: "cliente", text: "Hacen diseno con maquina?", time: "14:38" },
-  ],
-  "4": [
-    { id: "1", from: "cliente", text: "Hola, tengo turno a las 15:30 hoy", time: "13:05" },
-    { id: "2", from: "vos", text: "Hola Emiliano! Si, con Tobias, corte + diseño", time: "13:10" },
-    { id: "3", from: "cliente", text: "Se me complico el laburo", time: "13:16" },
-    { id: "4", from: "vos", text: "Sin drama, si llegas hasta 15:45 lo sostenemos", time: "13:18" },
-    { id: "5", from: "cliente", text: "Se me hizo tarde, puedo llegar 10 min despues?", time: "13:20" },
-  ],
-  "5": [
-    { id: "1", from: "cliente", text: "Hola! Consulta por color de pelo", time: "12:30" },
-    { id: "2", from: "vos", text: "Hola Kevin! Hacemos color y decoloracion", time: "12:36" },
-    { id: "3", from: "cliente", text: "Cuanto tiempo lleva?", time: "12:41" },
-    { id: "4", from: "vos", text: "Entre 90 y 120 min segun el tono. Sale $ 9.500", time: "12:44" },
-    { id: "5", from: "cliente", text: "El color lo hacen el mismo dia?", time: "12:47" },
-  ],
-  "7": [
-    { id: "1", from: "cliente", text: "Hola, tenia turno a las 12 con Nico", time: "11:20" },
-    { id: "2", from: "vos", text: "Hola Matias! Si, corte fade, lo veo agendado", time: "11:26" },
-    { id: "3", from: "cliente", text: "Me surgio un imprevisto y no llego", time: "11:29" },
-    { id: "4", from: "vos", text: "Gracias por avisar, lo liberamos. Reagendamos?", time: "11:31" },
-    { id: "5", from: "cliente", text: "Tengo que cancelar el de las 12, disculpa", time: "11:32" },
-  ],
-}
-
-const generico: Message[] = [
-  { id: "1", from: "cliente", text: "Hola! Consulta rapida sobre la barberia", time: "09:10" },
-  { id: "2", from: "vos", text: "Hola! Contame, te ayudo", time: "09:14" },
-  { id: "3", from: "cliente", text: "Que horario tienen de atencion?", time: "09:20" },
-  { id: "4", from: "vos", text: "Martes a sabado de 9 a 21, con turno o por orden", time: "09:26" },
-  { id: "5", from: "cliente", text: "Perfecto, gracias!", time: "09:31" },
-]
-
-export async function getMessages(threadId: string): Promise<Message[]> {
-  await sleep(200)
-  return conversaciones[threadId] ?? generico
 }
