@@ -9,11 +9,11 @@ Un sistema de gestion para barberias: turnos, ventas del dia, conversaciones con
 ## Demo en vivo
 👉 https://sistema-barberia-three.vercel.app
 
-## Sumate a la comunidad (gratis)
+## Sumate al Club de la IA
 
-Estás aprendiendo a crear sistemas como este con Claude Code, entrá a la comunidad gratuita de WhatsApp. Ahí comparto cómo se hacen desde cero.
+Aprendé a crear tu Agencia de IA y conseguir tu primer cliente. Eso lo trabajamos adentro del Club de la IA, nuestro Skool privado.
 
-👉 https://chat.whatsapp.com/DExFTzgVMO5Ka9BG1cShDH
+👉 https://www.skool.com/club-de-la-ia-8047/about
 
 ---
 
@@ -68,6 +68,6 @@ Todo el diseño (colores, tipografía, nombre de la marca) vive en un solo archi
 
 ## Te trabaste
 
-Si algo no te salió, preguntá en la comunidad:
+Si algo no te salió, preguntá en el Club de la IA:
 
-👉 https://chat.whatsapp.com/DExFTzgVMO5Ka9BG1cShDH
+👉 https://www.skool.com/club-de-la-ia-8047/about
