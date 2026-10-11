@@ -93,7 +93,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </a>
         <div className={"min-h-screen bg-bg text-fg " + (stacked ? "flex flex-col" : "flex")}>
           <Nav />
-          <main id="contenido" tabIndex={-1} className="flex-1 overflow-x-hidden p-[var(--pad)] outline-none">
+          <main id="contenido" tabIndex={-1} className="relative min-w-0 flex-1 overflow-x-hidden p-[var(--pad)] outline-none">
             {children}
           </main>
           {/* Pie del menu en pantallas donde la tira no muestra al usuario de la demo. */}
