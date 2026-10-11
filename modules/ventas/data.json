@@ -2,8 +2,8 @@
   "tickets": [
     {
       "id": "c01",
-      "cliente": "Ivan Peralta",
-      "barbero": "Tobias",
+      "cliente": "Iván Peralta",
+      "barbero": "Tobías",
       "items": [
         "Corte clásico"
       ],
@@ -15,7 +15,7 @@
     {
       "id": "c02",
       "cliente": "Alejo Barrios",
-      "barbero": "Nicolas",
+      "barbero": "Nicolás",
       "items": [
         "Corte clásico",
         "Cera fijadora"
@@ -28,7 +28,7 @@
     {
       "id": "c03",
       "cliente": "Lautaro Micheloud",
-      "barbero": "Tobias",
+      "barbero": "Tobías",
       "items": [
         "Fade"
       ],
@@ -39,7 +39,7 @@
     },
     {
       "id": "c04",
-      "cliente": "Julian Escobar",
+      "cliente": "Julián Escobar",
       "barbero": "Ramiro",
       "items": [
         "Barba"
@@ -51,8 +51,8 @@
     },
     {
       "id": "c05",
-      "cliente": "Tomas Aguirre",
-      "barbero": "Nicolas",
+      "cliente": "Tomás Aguirre",
+      "barbero": "Nicolás",
       "items": [
         "Corte clásico"
       ],
@@ -88,7 +88,7 @@
     },
     {
       "id": "c08",
-      "cliente": "Pablo Zarate",
+      "cliente": "Pablo Zárate",
       "barbero": "Emiliano",
       "items": [
         "Corte + barba"
@@ -101,7 +101,7 @@
     {
       "id": "c09",
       "cliente": "Marco Aramburu",
-      "barbero": "Tobias",
+      "barbero": "Tobías",
       "items": [
         "Corte + barba",
         "Shampoo sólido"
@@ -114,7 +114,7 @@
     {
       "id": "c10",
       "cliente": "Lucas Ibarra",
-      "barbero": "Nicolas",
+      "barbero": "Nicolás",
       "items": [
         "Corte + barba"
       ],
@@ -125,8 +125,8 @@
     },
     {
       "id": "c11",
-      "cliente": "Gaston Rivero",
-      "barbero": "Tobias",
+      "cliente": "Gastón Rivero",
+      "barbero": "Tobías",
       "items": [
         "Corte + barba"
       ],
@@ -138,7 +138,7 @@
     {
       "id": "c12",
       "cliente": "Rodrigo Cabral",
-      "barbero": "Nicolas",
+      "barbero": "Nicolás",
       "items": [
         "Corte clásico"
       ],
@@ -162,7 +162,7 @@
     },
     {
       "id": "c14",
-      "cliente": "Andres Godoy",
+      "cliente": "Andrés Godoy",
       "barbero": "Emiliano",
       "items": [
         "Barba"
@@ -187,8 +187,8 @@
     },
     {
       "id": "c16",
-      "cliente": "Federico Nunez",
-      "barbero": "Nicolas",
+      "cliente": "Federico Núñez",
+      "barbero": "Nicolás",
       "items": [
         "Corte clásico"
       ],
@@ -200,7 +200,7 @@
     {
       "id": "c17",
       "cliente": "Bruno Ferre",
-      "barbero": "Tobias",
+      "barbero": "Tobías",
       "items": [
         "Fade"
       ],
@@ -211,7 +211,7 @@
     },
     {
       "id": "c18",
-      "cliente": "Hernan Ledesma",
+      "cliente": "Hernán Ledesma",
       "barbero": "Emiliano",
       "items": [
         "Ritual completo"
@@ -223,7 +223,7 @@
     },
     {
       "id": "c19",
-      "cliente": "Damian Roldan",
+      "cliente": "Damián Roldán",
       "barbero": "Ramiro",
       "items": [
         "Corte + barba"
@@ -235,8 +235,8 @@
     },
     {
       "id": "c20",
-      "cliente": "Emanuel Rios",
-      "barbero": "Tobias",
+      "cliente": "Emanuel Ríos",
+      "barbero": "Tobías",
       "items": [
         "Corte clásico"
       ],
@@ -260,7 +260,7 @@
     },
     {
       "id": "c22",
-      "cliente": "Joaquin Medina",
+      "cliente": "Joaquín Medina",
       "barbero": "Emiliano",
       "items": [
         "Corte + barba"
@@ -273,7 +273,7 @@
     {
       "id": "c23",
       "cliente": "Franco Duarte",
-      "barbero": "Nicolas",
+      "barbero": "Nicolás",
       "items": [
         "Fade",
         "Cera fijadora"
@@ -285,8 +285,8 @@
     },
     {
       "id": "c24",
-      "cliente": "Agustin Ferrari",
-      "barbero": "Tobias",
+      "cliente": "Agustín Ferrari",
+      "barbero": "Tobías",
       "items": [
         "Corte clásico"
       ],

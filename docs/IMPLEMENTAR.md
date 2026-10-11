@@ -80,7 +80,7 @@ Los **servicios** (corte, fade, barba, perfilado, combo, ritual) hoy viven en `s
 
 Dos detalles del demo que conviene saber antes de armar las tablas:
 
-- En `contactos` y `ventas` el barbero viene como **nombre de pila** (`"Tobias"`), mientras que en `agenda` es un **id** (`"b1"`). En la base todo se relaciona por id y la función de `api.ts` devuelve el nombre de pila (ver el ejemplo de la sección 3.8).
+- En `contactos` y `ventas` el barbero viene como **nombre de pila** (`"Tobías"`), mientras que en `agenda` es un **id** (`"b1"`). En la base todo se relaciona por id y la función de `api.ts` devuelve el nombre de pila (ver el ejemplo de la sección 3.8).
 - `visitas`, `gasto` y `ultimaVisita` de los clientes son números ya calculados. En la tabla `clientes` quedan como columnas; más adelante un job (sección 4) puede recalcularlas a partir de `tickets`.
 
 ---
@@ -122,7 +122,7 @@ create table public.servicios (
 -- ---------- barberos (modules/agenda: Barbero) ----------
 create table public.barberos (
   id            text primary key,                    -- 'b1'..'b4'
-  nombre        text not null,                       -- 'Tobias Arrieta'
+  nombre        text not null,                       -- 'Tobías Arrieta'
   inicial       text not null,                       -- 'TA' (avatar)
   especialidad  text not null default ''
 );
@@ -346,7 +346,7 @@ await guardar("servicios", servicios)
 const agenda = leer("agenda")
 await guardar("barberos", agenda.barberos)
 
-// En clientes y tickets el barbero viene como nombre de pila ("Tobias"): lo convertimos a id.
+// En clientes y tickets el barbero viene como nombre de pila ("Tobías"): lo convertimos a id.
 const barberoPorNombre = Object.fromEntries(agenda.barberos.map((b) => [b.nombre.split(" ")[0], b.id]))
 const servicioPorLabel = Object.fromEntries(servicios.map((s) => [s.label, s.id]))
 const durPorId = Object.fromEntries(servicios.map((s) => [s.id, s.dur_min]))

@@ -2,7 +2,7 @@
   "ocupacion": [
     {
       "barberoId": "b1",
-      "nombre": "Tobias",
+      "nombre": "Tobías",
       "inicial": "TA",
       "pct": 0.32,
       "turnos": 5
@@ -16,7 +16,7 @@
     },
     {
       "barberoId": "b3",
-      "nombre": "Nicolas",
+      "nombre": "Nicolás",
       "inicial": "NB",
       "pct": 0.27,
       "turnos": 5
@@ -73,7 +73,7 @@
     },
     {
       "hora": "15:00",
-      "texto": "Cobro $450 · Agustin Ferrari · transferencia",
+      "texto": "Cobro $450 · Agustín Ferrari · transferencia",
       "tipo": "cobro"
     },
     {
@@ -83,7 +83,7 @@
     },
     {
       "hora": "13:30",
-      "texto": "Cobro $750 · Joaquin Medina · QR",
+      "texto": "Cobro $750 · Joaquín Medina · QR",
       "tipo": "cobro"
     },
     {
@@ -93,7 +93,7 @@
     },
     {
       "hora": "12:30",
-      "texto": "Dario Quinteros no vino al turno de las 12:30",
+      "texto": "Darío Quinteros no vino al turno de las 12:30",
       "tipo": "rechazo"
     },
     {
@@ -103,7 +103,7 @@
     },
     {
       "hora": "09:12",
-      "texto": "Nuevo mensaje de Gaston Rivero (WhatsApp)",
+      "texto": "Nuevo mensaje de Gastón Rivero (WhatsApp)",
       "tipo": "mensaje"
     },
     {
@@ -113,7 +113,7 @@
     },
     {
       "hora": "08:20",
-      "texto": "Andres Godoy (cliente nuevo) reservó Barba",
+      "texto": "Andrés Godoy (cliente nuevo) reservó Barba",
       "tipo": "turno"
     }
   ]

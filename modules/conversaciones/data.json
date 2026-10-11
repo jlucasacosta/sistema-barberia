@@ -2,7 +2,7 @@
   "hilos": [
     {
       "id": "h1",
-      "cliente": "Gaston Rivero",
+      "cliente": "Gastón Rivero",
       "inicial": "GR",
       "canal": "WhatsApp",
       "preview": "Perfecto, confirmo el combo a las 11",
@@ -16,7 +16,7 @@
         },
         {
           "de": "local",
-          "texto": "¡Buenas Gaston! Sí, 11:00 con Tobias. ¿Corte + barba?",
+          "texto": "¡Buenas Gastón! Sí, 11:00 con Tobías. ¿Corte + barba?",
           "hora": "09:08"
         },
         {
@@ -54,7 +54,7 @@
     },
     {
       "id": "h3",
-      "cliente": "Andres Godoy",
+      "cliente": "Andrés Godoy",
       "inicial": "AG",
       "canal": "WhatsApp",
       "preview": "¡Primera vez que voy, gracias!",
@@ -117,7 +117,7 @@
     },
     {
       "id": "h6",
-      "cliente": "Damian Roldan",
+      "cliente": "Damián Roldán",
       "inicial": "DR",
       "canal": "WhatsApp",
       "preview": "Gracias, nos vemos el jueves",
@@ -126,7 +126,7 @@
       "mensajes": [
         {
           "de": "local",
-          "texto": "Listo Damian, jueves 18:00 con Ramiro.",
+          "texto": "Listo Damián, jueves 18:00 con Ramiro.",
           "hora": "Ayer"
         },
         {
@@ -138,7 +138,7 @@
     },
     {
       "id": "h7",
-      "cliente": "Federico Nunez",
+      "cliente": "Federico Núñez",
       "inicial": "FN",
       "canal": "WhatsApp",
       "preview": "¿Puedo llevar a mi hijo también?",
@@ -222,7 +222,7 @@
     },
     {
       "id": "h11",
-      "cliente": "Pablo Zarate",
+      "cliente": "Pablo Zárate",
       "inicial": "PZ",
       "canal": "Instagram",
       "preview": "¿Hacen diseño con máquina?",
@@ -238,7 +238,7 @@
     },
     {
       "id": "h12",
-      "cliente": "Julian Escobar",
+      "cliente": "Julián Escobar",
       "inicial": "JE",
       "canal": "WhatsApp",
       "preview": "Perfecto, ahí confirmo",
@@ -247,7 +247,7 @@
       "mensajes": [
         {
           "de": "local",
-          "texto": "Julian, tu turno es hoy 09:30.",
+          "texto": "Julián, tu turno es hoy 09:30.",
           "hora": "Lun"
         },
         {
@@ -280,7 +280,7 @@
     },
     {
       "id": "h14",
-      "cliente": "Agustin Ferrari",
+      "cliente": "Agustín Ferrari",
       "inicial": "AF",
       "canal": "Instagram",
       "preview": "Buenísimo, gracias por la atención",

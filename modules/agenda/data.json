@@ -2,7 +2,7 @@
   "barberos": [
     {
       "id": "b1",
-      "nombre": "Tobias Arrieta",
+      "nombre": "Tobías Arrieta",
       "inicial": "TA",
       "especialidad": "Fades y diseños"
     },
@@ -14,7 +14,7 @@
     },
     {
       "id": "b3",
-      "nombre": "Nicolas Baez",
+      "nombre": "Nicolás Báez",
       "inicial": "NB",
       "especialidad": "Corte clásico"
     },
@@ -39,7 +39,7 @@
       "barberoId": "b1",
       "inicio": "10:00",
       "servicio": "corte",
-      "cliente": "Ivan Peralta",
+      "cliente": "Iván Peralta",
       "estado": "confirmado"
     },
     {
@@ -47,7 +47,7 @@
       "barberoId": "b1",
       "inicio": "11:00",
       "servicio": "combo",
-      "cliente": "Gaston Rivero",
+      "cliente": "Gastón Rivero",
       "estado": "confirmado"
     },
     {
@@ -55,7 +55,7 @@
       "barberoId": "b1",
       "inicio": "12:30",
       "servicio": "fade",
-      "cliente": "Dario Quinteros",
+      "cliente": "Darío Quinteros",
       "estado": "no-vino"
     },
     {
@@ -79,7 +79,7 @@
       "barberoId": "b2",
       "inicio": "09:30",
       "servicio": "barba",
-      "cliente": "Julian Escobar",
+      "cliente": "Julián Escobar",
       "estado": "confirmado"
     },
     {
@@ -119,7 +119,7 @@
       "barberoId": "b2",
       "inicio": "18:00",
       "servicio": "combo",
-      "cliente": "Damian Roldan",
+      "cliente": "Damián Roldán",
       "estado": "pendiente"
     },
     {
@@ -135,7 +135,7 @@
       "barberoId": "b3",
       "inicio": "10:00",
       "servicio": "corte",
-      "cliente": "Tomas Aguirre",
+      "cliente": "Tomás Aguirre",
       "estado": "confirmado"
     },
     {
@@ -151,7 +151,7 @@
       "barberoId": "b3",
       "inicio": "13:00",
       "servicio": "corte",
-      "cliente": "Matias Ferreyra",
+      "cliente": "Matías Ferreyra",
       "estado": "no-vino"
     },
     {
@@ -167,7 +167,7 @@
       "barberoId": "b3",
       "inicio": "17:30",
       "servicio": "corte",
-      "cliente": "Federico Nunez",
+      "cliente": "Federico Núñez",
       "estado": "pendiente"
     },
     {
@@ -183,7 +183,7 @@
       "barberoId": "b4",
       "inicio": "12:00",
       "servicio": "combo",
-      "cliente": "Pablo Zarate",
+      "cliente": "Pablo Zárate",
       "estado": "confirmado"
     },
     {
@@ -191,7 +191,7 @@
       "barberoId": "b4",
       "inicio": "14:30",
       "servicio": "barba",
-      "cliente": "Andres Godoy",
+      "cliente": "Andrés Godoy",
       "estado": "pendiente"
     },
     {
@@ -199,7 +199,7 @@
       "barberoId": "b4",
       "inicio": "16:00",
       "servicio": "ritual",
-      "cliente": "Hernan Ledesma",
+      "cliente": "Hernán Ledesma",
       "estado": "pendiente"
     }
   ]
