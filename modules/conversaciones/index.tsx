@@ -27,19 +27,21 @@ export function ConversacionesPage() {
 
       <div className="mt-5 grid gap-0 overflow-hidden rounded-xl border border-border md:grid-cols-[320px_1fr]" style={{ height: "calc(100vh - 210px)" }}>
         {/* Master: lista de hilos */}
-        <div className="overflow-y-auto border-b border-border bg-surface md:border-b-0 md:border-r">
+        <div role="region" aria-label="Lista de conversaciones" className="overflow-y-auto border-b border-border bg-surface md:border-b-0 md:border-r">
           {hilos.map((h) => {
             const active = h.id === activo
             return (
               <button
                 key={h.id}
+                type="button"
                 onClick={() => setActivo(h.id)}
+                aria-current={active ? "true" : undefined}
                 className={
                   "flex w-full items-center gap-3 border-b border-border/70 px-3 py-2.5 text-left transition-colors " +
                   (active ? "bg-accent/10" : "hover:bg-subtle/50")
                 }
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary font-heading text-lg tracking-wide text-surface">
+                <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary font-heading text-lg tracking-wide text-surface">
                   {h.inicial}
                 </span>
                 <div className="min-w-0 flex-1">
@@ -50,7 +52,10 @@ export function ConversacionesPage() {
                   <div className="flex items-center justify-between gap-2">
                     <span className="truncate text-xs text-muted">{h.preview}</span>
                     {h.sinLeer > 0 && (
-                      <span className="chip shrink-0 bg-accent text-surface">{h.sinLeer}</span>
+                      <span className="chip shrink-0 bg-accent text-surface">
+                        {h.sinLeer}
+                        <span className="sr-only"> sin leer</span>
+                      </span>
                     )}
                   </div>
                 </div>
@@ -64,15 +69,15 @@ export function ConversacionesPage() {
           {hilo ? (
             <>
               <div className="flex items-center gap-3 border-b-2 border-laton/50 bg-surface px-4 py-3">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary font-heading text-xl tracking-wide text-surface">
+                <span aria-hidden="true" className="flex h-11 w-11 items-center justify-center rounded-full bg-primary font-heading text-xl tracking-wide text-surface">
                   {hilo.inicial}
                 </span>
                 <div>
-                  <div className="font-heading text-xl tracking-wide text-fg">{hilo.cliente}</div>
+                  <h2 className="font-heading text-xl tracking-wide text-fg">{hilo.cliente}</h2>
                   <div className="text-xs text-muted">{hilo.canal}</div>
                 </div>
               </div>
-              <div className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+              <div role="log" aria-label={`Conversación con ${hilo.cliente}`} tabIndex={0} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
                 {hilo.mensajes.map((m, i) => {
                   const local = m.de === "local"
                   return (
@@ -84,15 +89,15 @@ export function ConversacionesPage() {
                         }
                       >
                         <p>{m.texto}</p>
-                        <span className={"mt-1 block text-[10px] " + (local ? "text-surface/70" : "text-muted")}>{m.hora}</span>
+                        <span className={"mt-1 block text-[11px] " + (local ? "text-surface/80" : "text-muted")}>{m.hora}</span>
                       </div>
                     </div>
                   )
                 })}
               </div>
               <div className="border-t border-border bg-surface px-4 py-3">
-                <div className="flex items-center gap-2 rounded-lg border border-border bg-bg px-3 py-2 text-sm text-muted">
-                  Escribi una respuesta&hellip;
+                <div aria-hidden="true" className="flex items-center gap-2 rounded-lg border border-border bg-bg px-3 py-2 text-sm text-muted">
+                  Escribí una respuesta&hellip;
                 </div>
               </div>
             </>

@@ -47,12 +47,13 @@ export const bloqueDeTinte: Record<Tinte, string> = {
   barba: "bg-accent/10 border-accent/40",
   combo: "bg-accent/20 border-laton",
 }
-// Chip square de estado del turno.
+// Chip square de estado del turno. El texto usa la TINTA del estado (theme.ink, >=4.5:1
+// sobre su tinte); el relleno y el borde siguen siendo el token base.
 export const chipDeEstado: Record<EstadoTurno, string> = {
-  pendiente: "bg-warning/15 text-warning border border-warning/45",
-  confirmado: "bg-success/15 text-success border border-success/45",
-  cancelado: "bg-danger/12 text-danger border border-danger/40",
-  "no-vino": "bg-muted/15 text-muted border border-muted/40",
+  pendiente: "bg-warning/15 text-warning-ink border border-warning/45",
+  confirmado: "bg-success/15 text-success-ink border border-success/45",
+  cancelado: "bg-danger/12 text-danger-ink border border-danger/40",
+  "no-vino": "bg-muted/15 text-fg/70 border border-muted/40",
 }
 export const rotuloDeEstado: Record<EstadoTurno, string> = {
   pendiente: "Pendiente",

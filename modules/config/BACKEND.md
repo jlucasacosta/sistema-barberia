@@ -1,5 +1,6 @@
 # Backend — Configuracion
-> Asume BACKEND_RULES.md.
 
-- El diseno (theme) es estatico en shell/theme.ts: no necesita backend.
-- Si se quieren settings por usuario: tabla settings (user_id, key, value).
+Guia completa: [`docs/IMPLEMENTAR.md`](../../docs/IMPLEMENTAR.md).
+
+- Hoy este modulo no tiene `api.ts`: el diseno vive en `shell/theme.ts` y los datos del local estan en el componente.
+- Al conectar el backend: tablas `ajustes` (clave/valor) y `notificaciones`, y crear `modules/config/api.ts`.

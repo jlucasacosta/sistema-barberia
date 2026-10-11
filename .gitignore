@@ -8,6 +8,6 @@ out/
 *.local
 *.log
 .DS_Store
-
 .vercel
-.env*
+# OJO: `vercel link` agrega una linea `.env*` al final de este archivo y eso vuelve a
+# ignorar .env.example. Si aparece, borrala.

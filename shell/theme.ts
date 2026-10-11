@@ -29,6 +29,16 @@ export type Theme = {
     danger: string
     info: string
   }
+  // Tintas de TEXTO: la misma familia que el token de estado/metal pero oscurecida
+  // lo justo para llegar a 4.5:1 (WCAG AA) sobre el tinte del chip y sobre el papel.
+  // El token base se queda para rellenos, puntos, rieles y filetes.
+  ink: {
+    laton: string
+    success: string
+    warning: string
+    danger: string
+    info: string
+  }
   // Constantes de dominio de la barberia. Son DISEÑO, no logica suelta:
   // ningun componente inventa un numero magico. El helper shell/agenda.ts
   // los traduce a posicion/alto de bloque y a clases literales.
@@ -63,13 +73,20 @@ export const navaja: Theme = {
     bg: "#F4EEE3", // crema papel de barberia
     surface: "#FCFAF4", // marfil de la lamina / tarjeta
     fg: "#17130F", // tinta
-    muted: "#8A7B68", // sepia apagado para texto secundario
+    muted: "#6B6051", // sepia apagado para texto secundario (era #8A7B68: 3.6:1; ahora >=4.5:1 sobre papel y tintes)
     border: "#E0D6C4", // tan suave
     subtle: "#ECE4D5", // hover / relleno de franja
     success: "#4E7A54", // verde desaturado = confirmado
     warning: "#C9761F", // ambar frio = pendiente (separado del laton a proposito)
     danger: "#B23A2E", // ladrillo = cancelado / rechazado
     info: "#5B6B72", // acero desaturado = tinte del servicio "corte"
+  },
+  ink: {
+    laton: "#735728", // laton como TEXTO (LIBRE, VIP, Mover silla): 4.6:1
+    success: "#3E6143", // verde confirmado como texto sobre su tinte: 4.6:1
+    warning: "#854E14", // ambar pendiente como texto sobre su tinte: 4.6:1
+    danger: "#9A3228", // ladrillo como texto sobre su tinte: 4.6:1
+    info: "#4D5B61", // acero como texto sobre su tinte: 4.5:1
   },
   agenda: {
     apertura: "09:00",

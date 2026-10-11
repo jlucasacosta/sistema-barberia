@@ -1,7 +1,7 @@
 # Backend — Dashboard
-> Asume BACKEND_RULES.md (stack global). Aca solo lo propio.
 
-- Sin tablas propias: agrega datos de otros modulos (ventas, pipeline, conversaciones).
-- Fuente ideal: vistas / materialized views en Supabase.
-- Realtime opcional: refrescar KPIs suscribiendo a las tablas fuente.
-- Reemplazar: modules/dashboard/api.ts (mock -> queries agregadas). Misma firma.
+Guia completa: [`docs/IMPLEMENTAR.md`](../../docs/IMPLEMENTAR.md).
+
+- Sin tablas propias de negocio: vistas `v_ocupacion_hoy` y `v_ranking_servicios_hoy` sobre `turnos` y `servicios`, y la tabla `actividad` para el feed.
+- Realtime opcional: refrescar al cambiar `turnos` o `tickets`.
+- Reemplazar: `modules/dashboard/api.ts` (`getOcupacion`, `getRankingServicios`, `getActividad`). Misma firma.

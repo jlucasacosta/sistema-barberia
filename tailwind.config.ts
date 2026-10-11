@@ -25,6 +25,11 @@ export default {
         warning: token("warning"),
         danger: token("danger"),
         info: token("info"),
+        "laton-ink": token("laton-ink"),
+        "success-ink": token("success-ink"),
+        "warning-ink": token("warning-ink"),
+        "danger-ink": token("danger-ink"),
+        "info-ink": token("info-ink"),
       },
       borderRadius: {
         DEFAULT: "var(--radius)",

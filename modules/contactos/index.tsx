@@ -6,9 +6,9 @@ import { precio } from "@/shell/agenda"
 import { getClientes, type Cliente } from "./api"
 
 const chipFidelidad: Record<Cliente["fidelidad"], string> = {
-  nuevo: "chip border border-info/40 bg-info/10 text-info",
+  nuevo: "chip border border-info/40 bg-info/10 text-info-ink",
   habitual: "chip border border-border bg-subtle/60 text-muted",
-  vip: "chip border border-laton bg-laton/12 text-laton",
+  vip: "chip border border-laton bg-laton/12 text-laton-ink",
 }
 
 export function ContactosPage() {
@@ -32,15 +32,17 @@ export function ContactosPage() {
             {filtrados.filter((c) => c.fidelidad === "vip").length} VIP
           </p>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div role="group" aria-label="Filtrar por barbero" className="flex flex-wrap gap-2">
           {["todos", ...barberos].map((b) => {
             const active = filtro === b
             return (
               <button
                 key={b}
+                type="button"
                 onClick={() => setFiltro(b)}
+                aria-pressed={active}
                 className={
-                  "chip cursor-pointer transition-colors " +
+                  "chip chip-btn transition-colors " +
                   (active ? "bg-accent text-surface" : "border border-border bg-surface text-muted hover:border-laton")
                 }
               >
@@ -51,28 +53,34 @@ export function ContactosPage() {
         </div>
       </div>
 
-      <div className="mt-5 overflow-x-auto rounded-xl border border-border bg-surface">
+      <div
+        role="region"
+        aria-label="Tabla de clientes (desplazable)"
+        tabIndex={0}
+        className="mt-5 overflow-x-auto rounded-xl border border-border bg-surface"
+      >
         <table className="w-full min-w-[860px] border-collapse text-sm">
+          <caption className="sr-only">Fichas de clientes: contacto, barbero, servicio habitual, última visita, visitas y gasto</caption>
           <thead>
             <tr className="border-b-2 border-laton/50 text-left font-heading text-base tracking-wide text-muted">
-              <th className="px-4 py-2.5 font-normal">Cliente</th>
-              <th className="px-3 py-2.5 font-normal">Contacto</th>
-              <th className="px-3 py-2.5 font-normal">Barbero</th>
-              <th className="px-3 py-2.5 font-normal">Servicio habitual</th>
-              <th className="px-3 py-2.5 text-center font-normal">Ult. visita</th>
-              <th className="px-3 py-2.5 text-center font-normal">Visitas</th>
-              <th className="px-4 py-2.5 text-right font-normal">Gasto</th>
+              <th scope="col" className="px-4 py-2.5 font-normal">Cliente</th>
+              <th scope="col" className="px-3 py-2.5 font-normal">Contacto</th>
+              <th scope="col" className="px-3 py-2.5 font-normal">Barbero</th>
+              <th scope="col" className="px-3 py-2.5 font-normal">Servicio habitual</th>
+              <th scope="col" className="px-3 py-2.5 text-center font-normal">Últ. visita</th>
+              <th scope="col" className="px-3 py-2.5 text-center font-normal">Visitas</th>
+              <th scope="col" className="px-4 py-2.5 text-right font-normal">Gasto</th>
             </tr>
           </thead>
           <tbody>
             {filtrados.map((c, i) => (
               <tr key={c.id} className={"border-b border-border/70 " + (i % 2 ? "bg-bg/40" : "")}>
-                <td className="px-4 py-2">
+                <th scope="row" className="px-4 py-2 text-left font-normal">
                   <div className="flex items-center gap-2">
                     <span className="font-medium text-fg">{c.nombre}</span>
                     <span className={chipFidelidad[c.fidelidad]}>{c.fidelidad}</span>
                   </div>
-                </td>
+                </th>
                 <td className="px-3 py-2 text-muted">
                   <div className="tabular-nums">{c.telefono}</div>
                   <div className="text-xs">{c.email}</div>

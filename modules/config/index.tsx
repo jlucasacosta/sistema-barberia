@@ -7,7 +7,7 @@ import { theme } from "@/shell/theme"
 import { precio } from "@/shell/agenda"
 
 const barberos = [
-  { nombre: "Tobias Arrieta", rol: "Barbero senior · Fades y disenos" },
+  { nombre: "Tobias Arrieta", rol: "Barbero senior · Fades y diseños" },
   { nombre: "Ramiro Vega", rol: "Barbero · Barba y navaja" },
   { nombre: "Nicolas Baez", rol: "Barbero · Corte clasico" },
   { nombre: "Emiliano Sarli", rol: "Barbero senior · Ritual completo" },
@@ -17,7 +17,7 @@ const notificaciones = [
   { label: "Recordatorio de turno por WhatsApp", on: true },
   { label: "Aviso de silla libre para clientes sin turno", on: true },
   { label: "Encuesta post-servicio", on: false },
-  { label: "Promocion de cumpleanos del cliente", on: true },
+  { label: "Promoción de cumpleaños del cliente", on: true },
 ]
 
 export function ConfigPage() {
@@ -33,7 +33,7 @@ export function ConfigPage() {
 
   return (
     <div className="mx-auto max-w-[820px]">
-      <h1 className="font-heading text-4xl tracking-wide text-fg">CONFIGURACION</h1>
+      <h1 className="font-heading text-4xl tracking-wide text-fg">CONFIGURACIÓN</h1>
       <p className="mt-1 text-sm text-muted">{theme.brand.name} · panel del local</p>
 
       <div className="mt-5 space-y-2.5">
@@ -41,14 +41,24 @@ export function ConfigPage() {
           const open = abierta === s
           return (
             <div key={s} className="overflow-hidden rounded-xl border border-border bg-surface">
-              <button
-                onClick={() => setAbierta(open ? "" : s)}
-                className={"flex w-full items-center justify-between px-4 py-3 text-left " + (open ? "filete" : "")}
-              >
-                <span className="font-heading text-2xl tracking-wide text-fg">{titulos[s]}</span>
-                <span className="font-heading text-2xl text-laton">{open ? "–" : "+"}</span>
-              </button>
-              {open && <div className="px-4 py-4">{contenido(s)}</div>}
+              <h2>
+                <button
+                  type="button"
+                  id={`acc-${s}`}
+                  aria-expanded={open}
+                  aria-controls={`panel-${s}`}
+                  onClick={() => setAbierta(open ? "" : s)}
+                  className={"flex min-h-11 w-full items-center justify-between px-4 py-3 text-left " + (open ? "filete" : "")}
+                >
+                  <span className="font-heading text-2xl tracking-wide text-fg">{titulos[s]}</span>
+                  <span aria-hidden="true" className="font-heading text-2xl text-laton-ink">{open ? "–" : "+"}</span>
+                </button>
+              </h2>
+              {open && (
+                <div id={`panel-${s}`} role="region" aria-labelledby={`acc-${s}`} className="px-4 py-4">
+                  {contenido(s)}
+                </div>
+              )}
             </div>
           )
         })}
@@ -62,8 +72,8 @@ function contenido(s: string) {
     return (
       <div className="grid gap-3 sm:grid-cols-2">
         <Campo label="Nombre" valor={theme.brand.name} />
-        <Campo label="Direccion" valor="Pasaje del Filo 458, Rosario" />
-        <Campo label="Telefono" valor="+54 9 341 555 0198" />
+        <Campo label="Dirección" valor="Pasaje del Filo 458, Rosario" />
+        <Campo label="Teléfono" valor="+54 9 341 672 0198" />
         <Campo label="Instagram" valor="@navaja.barbershop" />
       </div>
     )
@@ -73,7 +83,7 @@ function contenido(s: string) {
       <ul className="divide-y divide-border/70">
         {barberos.map((b) => (
           <li key={b.nombre} className="flex items-center gap-3 py-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary font-heading text-lg tracking-wide text-surface ring-1 ring-laton">
+            <span aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-full bg-primary font-heading text-lg tracking-wide text-surface ring-1 ring-laton">
               {b.nombre.split(" ").map((p) => p[0]).slice(0, 2).join("")}
             </span>
             <div>
@@ -105,7 +115,7 @@ function contenido(s: string) {
       <div className="grid gap-3 sm:grid-cols-2">
         <Campo label="Apertura" valor={theme.agenda.apertura} />
         <Campo label="Cierre" valor={theme.agenda.cierre} />
-        <Campo label="Duracion de franja" valor={`${theme.agenda.franjaMin} min`} />
+        <Campo label="Duración de franja" valor={`${theme.agenda.franjaMin} min`} />
         <Campo label="Dias" valor="Lunes a sabado" />
       </div>
     )
@@ -115,7 +125,7 @@ function contenido(s: string) {
       {notificaciones.map((n) => (
         <li key={n.label} className="flex items-center justify-between py-2.5">
           <span className="text-fg">{n.label}</span>
-          <span className={"chip " + (n.on ? "border border-success/45 bg-success/12 text-success" : "border border-border bg-subtle/60 text-muted")}>
+          <span className={"chip " + (n.on ? "border border-success/45 bg-success/12 text-success-ink" : "border border-border bg-subtle/60 text-muted")}>
             {n.on ? "Activo" : "Off"}
           </span>
         </li>

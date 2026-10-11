@@ -8,9 +8,9 @@ import { precio } from "@/shell/agenda"
 import { getTickets, type Ticket, type EstadoCobro } from "./api"
 
 const COLUMNAS: { estado: EstadoCobro; titulo: string; acento: string }[] = [
-  { estado: "pendiente", titulo: "Por cobrar", acento: "border-warning" },
-  { estado: "cobrado", titulo: "Cobrado", acento: "border-success" },
-  { estado: "rechazado", titulo: "Rechazado", acento: "border-danger" },
+  { estado: "pendiente", titulo: "Por cobrar", acento: "bg-warning" },
+  { estado: "cobrado", titulo: "Cobrado", acento: "bg-success" },
+  { estado: "rechazado", titulo: "Rechazado", acento: "bg-danger" },
 ]
 
 const chipMetodo = "chip border border-border bg-subtle/60 text-muted"
@@ -18,6 +18,7 @@ const chipMetodo = "chip border border-border bg-subtle/60 text-muted"
 export function VentasPage() {
   const [tickets, setTickets] = useState<Ticket[]>([])
   const [filtro, setFiltro] = useState<string>("todos")
+  const [aviso, setAviso] = useState("") // anuncio para lectores de pantalla (aria-live)
 
   useEffect(() => {
     getTickets().then(setTickets)
@@ -27,6 +28,8 @@ export function VentasPage() {
   const filtrados = filtro === "todos" ? tickets : tickets.filter((t) => t.barbero === filtro)
 
   function mover(id: string, estado: EstadoCobro) {
+    const t = tickets.find((x) => x.id === id)
+    if (t) setAviso(`Ticket de ${t.cliente}: ${estado}`)
     setTickets((ts) => ts.map((t) => (t.id === id ? { ...t, estado } : t)))
   }
 
@@ -36,21 +39,23 @@ export function VentasPage() {
     <div className="mx-auto max-w-[1400px]">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="font-heading text-4xl tracking-wide text-fg">VENTAS DEL DIA</h1>
+          <h1 className="font-heading text-4xl tracking-wide text-fg">VENTAS DEL DÍA</h1>
           <p className="mt-1 text-sm text-muted">
             Cobrado hoy: <span className="font-heading text-lg text-accent">{precio(totalDia)}</span> ·{" "}
             {filtrados.filter((t) => t.estado === "rechazado").length} rechazos
           </p>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div role="group" aria-label="Filtrar por barbero" className="flex flex-wrap gap-2">
           {["todos", ...barberos].map((b) => {
             const active = filtro === b
             return (
               <button
                 key={b}
+                type="button"
                 onClick={() => setFiltro(b)}
+                aria-pressed={active}
                 className={
-                  "chip cursor-pointer transition-colors " +
+                  "chip chip-btn transition-colors " +
                   (active ? "bg-accent text-surface" : "border border-border bg-surface text-muted hover:border-laton")
                 }
               >
@@ -61,14 +66,18 @@ export function VentasPage() {
         </div>
       </div>
 
+      <p role="status" aria-live="polite" className="sr-only">{aviso}</p>
+
       <div className="mt-5 grid gap-4 md:grid-cols-3">
         {COLUMNAS.map((col) => {
           const items = filtrados.filter((t) => t.estado === col.estado)
           const suma = items.reduce((a, t) => a + t.total, 0)
           return (
-            <div key={col.estado} className={"rounded-xl border-t-4 bg-bg " + col.acento}>
+            <section key={col.estado} aria-label={col.titulo} className="overflow-hidden rounded-xl bg-bg">
+              {/* Riel de color del estado: barra propia, no borde (el borde se curva con el radio). */}
+              <div aria-hidden="true" className={"h-1 " + col.acento} />
               <div className="flex items-center justify-between px-3 py-2.5">
-                <span className="font-heading text-xl tracking-wide text-fg">{col.titulo}</span>
+                <h2 className="font-heading text-xl tracking-wide text-fg">{col.titulo}</h2>
                 <span className="chip border border-border bg-surface text-muted">
                   {items.length} · {precio(suma)}
                 </span>
@@ -78,10 +87,10 @@ export function VentasPage() {
                   <TarjetaCobro key={t.id} t={t} onMover={mover} />
                 ))}
                 {items.length === 0 && (
-                  <div className="libre rounded px-3 py-6 text-center font-heading tracking-widest text-laton">VACIO</div>
+                  <div className="libre rounded px-3 py-6 text-center font-heading tracking-widest text-laton-ink">VACÍO</div>
                 )}
               </div>
-            </div>
+            </section>
           )
         })}
       </div>
@@ -112,14 +121,18 @@ function TarjetaCobro({ t, onMover }: { t: Ticket; onMover: (id: string, e: Esta
           {t.estado === "pendiente" && (
             <>
               <button
+                type="button"
                 onClick={() => onMover(t.id, "cobrado")}
-                className="chip cursor-pointer border border-success/50 bg-success/10 text-success hover:bg-success/20"
+                aria-label={`Cobrar el ticket de ${t.cliente}`}
+                className="chip chip-btn border border-success/50 bg-success/10 text-success-ink hover:bg-success/20"
               >
                 Cobrar ›
               </button>
               <button
+                type="button"
                 onClick={() => onMover(t.id, "rechazado")}
-                className="chip cursor-pointer border border-danger/40 bg-danger/10 text-danger hover:bg-danger/20"
+                aria-label={`Marcar como rechazado el ticket de ${t.cliente}`}
+                className="chip chip-btn border border-danger/40 bg-danger/10 text-danger-ink hover:bg-danger/20"
               >
                 Rechazar
               </button>
@@ -127,13 +140,15 @@ function TarjetaCobro({ t, onMover }: { t: Ticket; onMover: (id: string, e: Esta
           )}
           {t.estado === "rechazado" && (
             <button
+              type="button"
               onClick={() => onMover(t.id, "pendiente")}
-              className="chip cursor-pointer border border-warning/50 bg-warning/10 text-warning hover:bg-warning/20"
+              aria-label={`Reintentar el cobro del ticket de ${t.cliente}`}
+              className="chip chip-btn border border-warning/50 bg-warning/10 text-warning-ink hover:bg-warning/20"
             >
               Reintentar ‹
             </button>
           )}
-          {t.estado === "cobrado" && <span className="chip border border-success/40 bg-success/10 text-success">OK</span>}
+          {t.estado === "cobrado" && <span className="chip border border-success/40 bg-success/10 text-success-ink">OK</span>}
         </div>
       </div>
     </article>

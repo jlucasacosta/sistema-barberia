@@ -1,5 +1,6 @@
-// Placeholder de auth. Reemplazar por Supabase Auth (@supabase/ssr) al
-// conectar el backend. Ver BACKEND_RULES.md. NUNCA Clerk.
+// Placeholder de auth (demo: no se usa en ninguna pantalla). Al conectar el backend,
+// reemplazar por Supabase Auth con @supabase/ssr. NUNCA Clerk.
+// Ver docs/IMPLEMENTAR.md, seccion "Supabase Auth".
 export async function getSession() {
   return { user: { id: "demo", name: "Usuario Demo" } }
 }

@@ -44,10 +44,14 @@ function rgb(hex: string) {
   return `${(n >> 16) & 255} ${(n >> 8) & 255} ${n & 255}`
 }
 
-export const metadata = { title: "Sistema", description: "Demo" }
+export const metadata = {
+  title: { default: theme.brand.name, template: `%s · ${theme.brand.name}` },
+  description: `Demo frontend de ${theme.brand.name}: agenda, ventas, clientes y conversaciones con datos de ejemplo.`,
+}
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const c = theme.colors
+  const ink = theme.ink
   const vars = {
     "--primary": rgb(c.primary),
     "--accent": rgb(c.accent),
@@ -62,6 +66,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     "--warning": rgb(c.warning),
     "--danger": rgb(c.danger),
     "--info": rgb(c.info),
+    "--laton-ink": rgb(ink.laton),
+    "--success-ink": rgb(ink.success),
+    "--warning-ink": rgb(ink.warning),
+    "--danger-ink": rgb(ink.danger),
+    "--info-ink": rgb(ink.info),
+    colorScheme: theme.mode,
     "--radius": radiusMap[theme.radius],
     "--pad": densityMap[theme.density],
     "--badge-radius": badgeMap[theme.badge],
@@ -75,9 +85,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="es">
       <body className={fontClass} style={vars}>
+        <a
+          href="#contenido"
+          className="sr-only rounded bg-accent px-4 py-2 font-heading text-lg tracking-wide text-surface focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50"
+        >
+          Saltar al contenido
+        </a>
         <div className={"min-h-screen bg-bg text-fg " + (stacked ? "flex flex-col" : "flex")}>
           <Nav />
-          <main className="flex-1 overflow-x-hidden p-[var(--pad)]">{children}</main>
+          <main id="contenido" tabIndex={-1} className="flex-1 overflow-x-hidden p-[var(--pad)] outline-none">
+            {children}
+          </main>
         </div>
       </body>
     </html>

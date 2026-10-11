@@ -10,13 +10,19 @@
   --bg: 244 238 227;
   --surface: 252 250 244;
   --fg: 23 19 15;
-  --muted: 138 123 104;
+  --muted: 107 96 81;
   --border: 224 214 196;
   --subtle: 236 228 213;
   --success: 78 122 84;
   --warning: 201 118 31;
   --danger: 178 58 46;
   --info: 91 107 114;
+  /* Tintas de texto (>= 4.5:1 sobre su tinte): ver theme.ink */
+  --laton-ink: 115 87 40;
+  --success-ink: 62 97 67;
+  --warning-ink: 133 78 20;
+  --danger-ink: 154 50 40;
+  --info-ink: 77 91 97;
   --radius: 10px;
   --pad: 20px;
   --badge-radius: 4px;
@@ -77,6 +83,17 @@
   .filete {
     border-bottom: 2px solid rgb(var(--laton) / 0.65);
   }
+  /* Chip que es BOTON: area de toque minima. 32px en escritorio (WCAG 2.5.8),
+     44px en pantallas tactiles (celular entre corte y corte). */
+  .chip-btn {
+    min-height: 2rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+  @media (pointer: coarse) {
+    .chip-btn { min-height: 2.75rem; }
+  }
   /* Hueco vendible: crema con contorno punteado laton. */
   .libre {
     border: 1.5px dashed rgb(var(--laton) / 0.55);
@@ -98,8 +115,23 @@
 }
 .flash-confirmar { animation: flash-confirmar 850ms ease-out; }
 
+/* Foco visible para teclado: aro oxblood con separacion, sobre papel y sobre tintes. */
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+}
+
+/* Reduced motion: la linea queda quieta y el flash de confirmacion NO desaparece:
+   se cambia el fade de fondo por un aro verde fijo (~0.9s) que sigue marcando el cambio
+   de estado sin animar nada. */
+@keyframes aro-confirmar {
+  0%, 99% { outline: 2px solid rgb(var(--success)); outline-offset: -2px; }
+  100% { outline: 0 solid transparent; }
+}
 @media (prefers-reduced-motion: reduce) {
-  .linea-ahora, .flash-confirmar { animation: none; }
+  .linea-ahora { animation: none; opacity: 0.85; }
+  .flash-confirmar { animation: aro-confirmar 900ms steps(1, end); }
+  html { scroll-behavior: auto; }
 }
 
 html {

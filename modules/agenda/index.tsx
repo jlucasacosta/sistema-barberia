@@ -4,7 +4,7 @@
 // barbero y contador "silla libre en NN min". Bloques de alto proporcional a la
 // duracion, tenidos por servicio. Huecos crema = vendibles. Linea "ahora" de laton.
 // Todo el color y los numeros salen de theme.ts via shell/agenda.ts.
-import { useEffect, useState } from "react"
+import { useEffect, useState, type CSSProperties } from "react"
 import { theme } from "@/shell/theme"
 import {
   franjas, franjaPx, rejillaPx, totalFranjas, franjaMin, aperturaMin, cierreMin,
@@ -19,6 +19,7 @@ export function AgendaPage() {
   const [filtro, setFiltro] = useState<string>("todos")
   const [nowMin, setNowMin] = useState<number | null>(null) // se calcula en cliente: evita hydration mismatch
   const [flash, setFlash] = useState<Record<string, boolean>>({})
+  const [aviso, setAviso] = useState("") // anuncio para lectores de pantalla (aria-live)
 
   useEffect(() => {
     getBarberos().then(setBarberos)
@@ -41,6 +42,8 @@ export function AgendaPage() {
   const visibles = filtro === "todos" ? barberos : barberos.filter((b) => b.id === filtro)
 
   function confirmar(id: string) {
+    const t = turnos.find((x) => x.id === id)
+    if (t) setAviso(`Turno de ${t.cliente} confirmado`)
     setTurnos((ts) => ts.map((t) => (t.id === id && t.estado === "pendiente" ? { ...t, estado: "confirmado" } : t)))
     setFlash((f) => ({ ...f, [id]: true }))
     setTimeout(() => setFlash((f) => ({ ...f, [id]: false })), 900)
@@ -52,6 +55,7 @@ export function AgendaPage() {
         if (t.id !== id) return t
         const i = barberos.findIndex((b) => b.id === t.barberoId)
         const next = barberos[(i + 1) % barberos.length]
+        setAviso(`Turno de ${t.cliente} movido a la silla de ${next.nombre}`)
         return { ...t, barberoId: next.id }
       })
     )
@@ -79,10 +83,18 @@ export function AgendaPage() {
         totalTurnos={turnos.filter((t) => t.estado === "confirmado" || t.estado === "pendiente").length}
       />
 
-      <div className="mt-5 overflow-auto rounded-xl border border-border" style={{ maxHeight: "calc(100vh - 210px)" }}>
+      <p role="status" aria-live="polite" className="sr-only">{aviso}</p>
+
+      <div
+        role="region"
+        aria-label="Grilla de turnos del día, una columna por barbero"
+        tabIndex={0}
+        className="mt-5 overflow-auto rounded-xl border border-border"
+        style={{ maxHeight: "calc(100vh - 210px)" }}
+      >
         <div className="flex min-w-max">
           {/* Gutter horario */}
-          <div className="sticky left-0 z-20 shrink-0 bg-bg" style={{ width: 66 }}>
+          <div aria-hidden="true" className="sticky left-0 z-20 shrink-0 bg-bg" style={{ width: 66 }}>
             <div className="sticky top-0 z-30 h-[92px] border-b-2 border-laton/60 bg-bg" />
             <div className="relative" style={{ height: rejillaPx }}>
               {franjas.map((f, i) => (
@@ -126,20 +138,22 @@ function Encabezado({
       <div>
         <h1 className="font-heading text-4xl tracking-wide text-fg">AGENDA</h1>
         <p className="mt-1 text-sm text-muted">
-          Agenda del dia · {theme.agenda.apertura}&ndash;{theme.agenda.cierre} ·{" "}
+          Agenda del día · {theme.agenda.apertura}&ndash;{theme.agenda.cierre} ·{" "}
           <span className="font-heading text-lg text-accent">{totalTurnos}</span> turnos activos
         </p>
       </div>
       {/* Estructura titulo-con-filtros: chips de barbero reemplazan al buscador. */}
-      <div className="flex flex-wrap gap-2">
+      <div role="group" aria-label="Filtrar por barbero" className="flex flex-wrap gap-2">
         {chips.map((c) => {
           const active = filtro === c.id
           return (
             <button
               key={c.id}
+              type="button"
               onClick={() => setFiltro(c.id)}
+              aria-pressed={active}
               className={
-                "chip cursor-pointer transition-colors " +
+                "chip chip-btn transition-colors " +
                 (active ? "bg-accent text-surface" : "bg-surface text-muted border border-border hover:border-laton")
               }
             >
@@ -176,13 +190,13 @@ function Columna({
     <div className="shrink-0 border-l border-border" style={{ width: 232 }}>
       {/* Cabecera sticky con avatar del barbero */}
       <div className="sticky top-0 z-10 flex h-[92px] items-center gap-3 border-b-2 border-laton/60 bg-surface px-3">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary font-heading text-2xl tracking-wide text-surface ring-2 ring-laton ring-offset-2 ring-offset-surface">
+        <span aria-hidden="true" className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary font-heading text-2xl tracking-wide text-surface ring-2 ring-laton ring-offset-2 ring-offset-surface">
           {barbero.inicial}
         </span>
         <div className="min-w-0">
-          <div className="truncate font-heading text-xl tracking-wide text-fg">{barbero.nombre}</div>
+          <h2 className="truncate font-heading text-xl tracking-wide text-fg">{barbero.nombre}</h2>
           <div className="mt-0.5 flex items-center gap-1.5">
-            <span className={"h-2 w-2 rounded-full " + (ocupada ? "bg-accent" : "bg-success")} />
+            <span aria-hidden="true" className={"h-2 w-2 rounded-full " + (ocupada ? "bg-accent" : "bg-success")} />
             <span className="text-[11px] text-muted">
               {libreEn === null ? "—" : ocupada ? `Silla libre en ${libreEn} min` : "Silla libre ahora"}
             </span>
@@ -205,59 +219,75 @@ function Columna({
               className="libre absolute inset-x-1.5 flex items-center justify-between rounded px-2"
               style={{ top: i * franjaPx + 3, height: franjaPx - 6 }}
             >
-              <span className="font-heading text-sm tracking-widest text-laton">LIBRE</span>
-              <span className="text-[10px] text-muted">{f}</span>
+              <span className="font-heading text-sm tracking-widest text-laton-ink">LIBRE</span>
+              <span className="text-[11px] text-muted">{f}</span>
             </div>
           )
         )}
 
-        {/* Bloques-turno */}
+        {/* Bloques-turno.
+            Cada bloque es un grupo enfocable (tab / tap). Cerrado mide lo que dura el servicio;
+            al recibir foco crece hasta mostrar TODO (servicio, hora, acciones) sobre un fondo
+            opaco. Asi las franjas de 30 min no recortan el contenido ni esconden los botones. */}
         {turnos.map((t) => {
           const svc = theme.servicios[t.servicio]
           const muerto = t.estado === "cancelado" || t.estado === "no-vino"
+          const compacto = svc.dur <= franjaMin
+          const rango = `${t.inicio}\u2013${finDe(t.inicio, svc.dur)}`
           return (
             <div
               key={t.id}
+              role="group"
+              tabIndex={0}
+              aria-label={`${svc.label}, ${t.cliente}, ${rango}, ${rotuloDeEstado[t.estado]}, ${precio(svc.precio)}`}
               className={
-                "absolute inset-x-1.5 flex flex-col justify-between overflow-hidden rounded border px-2.5 py-1.5 " +
-                bloqueDeTinte[svc.tinte] +
-                (flash[t.id] ? " flash-confirmar" : "") +
-                (muerto ? " opacity-45" : "")
+                "group absolute inset-x-1.5 z-[1] flex h-[var(--h)] min-h-[var(--h)] flex-col overflow-hidden rounded bg-bg " +
+                "focus-within:z-[9] focus-within:h-auto focus-within:overflow-visible"
               }
-              style={{ top: topDe(t.inicio) + 2, height: altoDe(svc.dur) - 4 }}
+              style={{ top: topDe(t.inicio) + 2, "--h": `${altoDe(svc.dur) - 4}px` } as CSSProperties}
             >
-              <div className="flex items-start justify-between gap-1">
-                <span className="font-heading text-sm tracking-wide text-muted">
-                  {t.inicio}&ndash;{finDe(t.inicio, svc.dur)}
-                </span>
-                <span className={"chip " + chipDeEstado[t.estado]}>{rotuloDeEstado[t.estado]}</span>
-              </div>
-              <div className="min-w-0">
-                <div className={"truncate font-heading text-lg leading-tight tracking-wide text-fg " + (muerto ? "line-through" : "")}>
-                  {t.cliente}
+              {/* Tinte del servicio (capa aparte para que el bloque cerrado sea opaco). */}
+              <div
+                aria-hidden="true"
+                className={"pointer-events-none absolute inset-0 rounded border " + bloqueDeTinte[svc.tinte] + (flash[t.id] ? " flash-confirmar" : "") + (muerto ? " opacity-60" : "")}
+              />
+              {compacto ? (
+                <div className="relative flex flex-1 flex-col justify-between px-2.5 py-1">
+                  <div className="flex items-center justify-between gap-1">
+                    <span className="truncate text-[11px] uppercase leading-none tracking-wide text-fg/70">{svc.label}</span>
+                    <span className="shrink-0 rounded-[var(--badge-radius)] bg-surface">
+                      <span className={"chip py-0.5 leading-none " + chipDeEstado[t.estado]}>{rotuloDeEstado[t.estado]}</span>
+                    </span>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-2">
+                    <span className={"truncate font-heading text-lg leading-tight tracking-wide text-fg " + (muerto ? "line-through" : "")}>
+                      {t.cliente}
+                    </span>
+                    <span className="shrink-0 font-heading text-base leading-none tracking-wide text-accent">{precio(svc.precio)}</span>
+                  </div>
+                  <div className="hidden pb-1 pt-1 group-focus-within:block">
+                    <span className="font-heading text-sm tracking-wide text-fg/70">{rango}</span>
+                    {!muerto && <Acciones t={t} onConfirmar={onConfirmar} onMover={onMover} />}
+                  </div>
                 </div>
-                <div className="flex items-center justify-between gap-2">
-                  <span className="truncate text-[11px] uppercase tracking-wide text-muted">{svc.label}</span>
-                  <span className="font-heading text-base tracking-wide text-accent">{precio(svc.precio)}</span>
-                </div>
-              </div>
-              {!muerto && (
-                <div className="mt-1 flex gap-1.5">
-                  {t.estado === "pendiente" && (
-                    <button
-                      onClick={() => onConfirmar(t.id)}
-                      className="chip cursor-pointer border border-success/50 bg-success/10 text-success hover:bg-success/20"
-                    >
-                      Confirmar
-                    </button>
-                  )}
-                  <button
-                    onClick={() => onMover(t.id)}
-                    title="Mover a la siguiente silla"
-                    className="chip cursor-pointer border border-laton/50 bg-laton/10 text-laton hover:bg-laton/20"
-                  >
-                    Mover silla ›
-                  </button>
+              ) : (
+                <div className="relative flex flex-1 flex-col justify-between px-2.5 py-1.5">
+                  <div className="flex items-start justify-between gap-1">
+                    <span className="font-heading text-sm tracking-wide text-fg/70">{rango}</span>
+                    <span className="rounded-[var(--badge-radius)] bg-surface">
+                      <span className={"chip " + chipDeEstado[t.estado]}>{rotuloDeEstado[t.estado]}</span>
+                    </span>
+                  </div>
+                  <div className="min-w-0">
+                    <div className={"truncate font-heading text-lg leading-tight tracking-wide text-fg " + (muerto ? "line-through" : "")}>
+                      {t.cliente}
+                    </div>
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="truncate text-[11px] uppercase tracking-wide text-fg/70">{svc.label}</span>
+                      <span className="font-heading text-base tracking-wide text-accent">{precio(svc.precio)}</span>
+                    </div>
+                  </div>
+                  {!muerto && <Acciones t={t} onConfirmar={onConfirmar} onMover={onMover} />}
                 </div>
               )}
             </div>
@@ -278,6 +308,37 @@ function Columna({
   )
 }
 
+function Acciones({
+  t, onConfirmar, onMover,
+}: { t: Turno; onConfirmar: (id: string) => void; onMover: (id: string) => void }) {
+  return (
+    <div className="mt-1 flex flex-wrap gap-1.5">
+      {t.estado === "pendiente" && (
+        <span className="rounded-[var(--badge-radius)] bg-surface">
+          <button
+            type="button"
+            onClick={() => onConfirmar(t.id)}
+            aria-label={`Confirmar el turno de ${t.cliente}`}
+            className="chip chip-btn border border-success/50 bg-success/10 text-success-ink hover:bg-success/20"
+          >
+            Confirmar
+          </button>
+        </span>
+      )}
+      <span className="rounded-[var(--badge-radius)] bg-surface">
+        <button
+          type="button"
+          onClick={() => onMover(t.id)}
+          aria-label={`Mover el turno de ${t.cliente} a la siguiente silla`}
+          className="chip chip-btn border border-laton/50 bg-laton/10 text-laton-ink hover:bg-laton/20"
+        >
+          Mover silla ›
+        </button>
+      </span>
+    </div>
+  )
+}
+
 function Leyenda() {
   const items: { label: string; cls: string }[] = [
     { label: "Corte", cls: "bg-info/25 border-info/45" },
@@ -289,12 +350,12 @@ function Leyenda() {
       <span className="font-heading text-sm tracking-widest">SERVICIO</span>
       {items.map((i) => (
         <span key={i.label} className="flex items-center gap-1.5">
-          <span className={"h-3 w-4 rounded border " + i.cls} />
+          <span aria-hidden="true" className={"h-3 w-4 rounded border " + i.cls} />
           {i.label}
         </span>
       ))}
       <span className="ml-2 flex items-center gap-1.5">
-        <span className="h-[2px] w-5 bg-laton" /> Ahora
+        <span aria-hidden="true" className="h-[2px] w-5 bg-laton" /> Ahora
       </span>
     </div>
   )
