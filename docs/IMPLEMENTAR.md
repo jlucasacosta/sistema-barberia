@@ -168,7 +168,7 @@ create index turnos_estado_idx on public.turnos (estado);
 
 -- ---------- tickets (modules/ventas: Ticket) ----------
 create table public.tickets (
-  id          text primary key,                      -- 'c01'..'c28'
+  id          text primary key,                      -- 'c01'..'c25'
   cliente_id  text references public.clientes (id) on delete set null,
   cliente     text not null,
   barbero_id  text not null references public.barberos (id) on delete restrict,
@@ -1002,6 +1002,6 @@ Ya tenés el recorrido completo: demo → base de datos → login → publicado 
 ### Qué se verificó y qué no
 
 - **Verificado:** el SQL de la sección 3.2 se ejecutó completo en un motor Postgres embebido (PGlite) cargando todos los datos de ejemplo de `data.json`: crea las 10 tablas y 2 vistas, la restricción anti-solape rechaza un turno superpuesto y deja pasar uno cancelado, y las vistas devuelven ocupación y ranking. La sintaxis de `supabase-js`, `@supabase/ssr`, `pg-boss` (incluido `schedule`, `work`, `send`) y de la API de OpenAI se contrastó con su documentación oficial el 2026-10-10.
-- **Actualización 2026-10-11:** se corrigieron datos de ejemplo (tickets rechazados, ocupación y ranking del dashboard calculados desde los turnos, fechas de última visita) y se sumó `modules/config/data.json`. Las columnas y los valores permitidos de las tablas no cambiaron, y el SQL no se volvió a ejecutar después de ese cambio.
+- **Actualización 2026-10-11:** se corrigieron datos de ejemplo (tickets rechazados, ocupación y ranking del dashboard calculados desde los turnos, fechas de última visita) y se sumó `modules/config/data.json`. Las columnas y los valores permitidos de las tablas no cambiaron. Después de ese cambio se volvió a ejecutar todo en PGlite (SQL de 3.2, script de 3.4 y SQL de 3.10) con los `data.json` actuales: carga sin errores (6 servicios, 4 barberos, 30 clientes, 22 turnos, 25 tickets, 14 conversaciones, 28 mensajes, 12 actividades, 4 ajustes, 4 notificaciones), las vistas coinciden con el dashboard (ocupación 27% a 41%) y RLS deja a un visitante anónimo en 0 filas.
 - **No verificado:** el envío real de WhatsApp (es un stub), los nombres exactos de botones de los paneles de Supabase, Railway y Vercel (cambian con el tiempo), la conexión del worker contra un proyecto real de Supabase y el comportamiento de `pg-boss` con cada tipo de pooler (la recomendación de usar modo sesión sale de la documentación, no de una prueba).
 - Licencia del repo: MIT. Podés usar y modificar este sistema libremente.
