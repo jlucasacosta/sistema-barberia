@@ -4,87 +4,62 @@
       "barberoId": "b1",
       "nombre": "Tobias",
       "inicial": "TA",
-      "pct": 0.82,
-      "turnos": 6
+      "pct": 0.32,
+      "turnos": 5
     },
     {
       "barberoId": "b2",
       "nombre": "Ramiro",
       "inicial": "RV",
-      "pct": 0.68,
-      "turnos": 6
+      "pct": 0.36,
+      "turnos": 5
     },
     {
       "barberoId": "b3",
       "nombre": "Nicolas",
       "inicial": "NB",
-      "pct": 0.75,
-      "turnos": 6
+      "pct": 0.27,
+      "turnos": 5
     },
     {
       "barberoId": "b4",
       "nombre": "Emiliano",
       "inicial": "ES",
-      "pct": 0.54,
+      "pct": 0.41,
       "turnos": 4
     }
   ],
   "rankingServicios": [
     {
       "label": "Corte clásico",
-      "valor": 9
+      "valor": 5
     },
     {
       "label": "Corte + barba",
-      "valor": 7
-    },
-    {
-      "label": "Fade",
-      "valor": 4
-    },
-    {
-      "label": "Ritual completo",
-      "valor": 3
+      "valor": 5
     },
     {
       "label": "Barba",
       "valor": 3
     },
     {
-      "label": "Perfilado",
+      "label": "Ritual completo",
+      "valor": 3
+    },
+    {
+      "label": "Fade",
       "valor": 2
+    },
+    {
+      "label": "Perfilado",
+      "valor": 1
     }
   ],
   "actividad": [
     {
-      "hora": "18:02",
-      "texto": "Damian Roldan reservó Corte + barba con Ramiro",
-      "tipo": "turno"
-    },
-    {
-      "hora": "17:35",
+      "hora": "16:10",
       "texto": "Cobro $750 · Lucas Ibarra · QR",
       "tipo": "cobro"
-    },
-    {
-      "hora": "17:10",
-      "texto": "Federico Nunez confirmó turno de las 17:30",
-      "tipo": "turno"
-    },
-    {
-      "hora": "16:48",
-      "texto": "Pago RECHAZADO · Matias Ferreyra · tarjeta",
-      "tipo": "rechazo"
-    },
-    {
-      "hora": "16:20",
-      "texto": "Cobro $1.100 · Hernan Ledesma · efectivo",
-      "tipo": "cobro"
-    },
-    {
-      "hora": "15:55",
-      "texto": "Nuevo mensaje de Bruno Ferre (Instagram)",
-      "tipo": "mensaje"
     },
     {
       "hora": "15:40",
@@ -92,29 +67,54 @@
       "tipo": "cobro"
     },
     {
-      "hora": "15:12",
-      "texto": "Andres Godoy (cliente nuevo) reservó Barba",
-      "tipo": "turno"
-    },
-    {
-      "hora": "14:30",
-      "texto": "Pago RECHAZADO · Dario Quinteros · tarjeta",
+      "hora": "15:20",
+      "texto": "Pago RECHAZADO · Leandro Cardozo · QR",
       "tipo": "rechazo"
     },
     {
-      "hora": "13:20",
+      "hora": "15:00",
+      "texto": "Cobro $450 · Agustin Ferrari · transferencia",
+      "tipo": "cobro"
+    },
+    {
+      "hora": "14:15",
+      "texto": "Cobro $850 · Franco Duarte · efectivo",
+      "tipo": "cobro"
+    },
+    {
+      "hora": "13:30",
       "texto": "Cobro $750 · Joaquin Medina · QR",
       "tipo": "cobro"
     },
     {
-      "hora": "12:05",
-      "texto": "Nuevo mensaje de Gaston Rivero (WhatsApp)",
-      "tipo": "mensaje"
+      "hora": "12:40",
+      "texto": "Pago RECHAZADO · Santiago Correa · tarjeta",
+      "tipo": "rechazo"
+    },
+    {
+      "hora": "12:30",
+      "texto": "Dario Quinteros no vino al turno de las 12:30",
+      "tipo": "rechazo"
     },
     {
       "hora": "11:30",
       "texto": "Nahuel Ojeda canceló su turno de las 11:30",
       "tipo": "rechazo"
+    },
+    {
+      "hora": "09:12",
+      "texto": "Nuevo mensaje de Gaston Rivero (WhatsApp)",
+      "tipo": "mensaje"
+    },
+    {
+      "hora": "08:47",
+      "texto": "Nuevo mensaje de Ezequiel Sosa (Instagram)",
+      "tipo": "mensaje"
+    },
+    {
+      "hora": "08:20",
+      "texto": "Andres Godoy (cliente nuevo) reservó Barba",
+      "tipo": "turno"
     }
   ]
 }

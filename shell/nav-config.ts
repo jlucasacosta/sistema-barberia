@@ -8,5 +8,5 @@ export const nav: NavItem[] = [
   { label: "Conversaciones", href: "/conversaciones" },
   { label: "Ventas", href: "/ventas" },
   { label: "Contactos", href: "/contactos" },
-  { label: "Config", href: "/config" },
+  { label: "Configuración", href: "/config" },
 ]

@@ -113,3 +113,18 @@ Grilla-semana con **barberos-avatar arriba de cada columna** y un turno que **sa
 ## 10. Veredicto
 
 **PASA.** Piel diferenciada de ambos vecinos en 6-7 palancas. Esqueleto con dos arquetipos que nadie usa (agenda=grilla-semana, ventas=kanban), combo KPI+gráfico inédito (anillos+barras-ranking), iconos sin-iconos frente al lucide-grueso vecino, estrella propia (Agenda) y un componente del patrón por defecto eliminado (buscador). Correcciones del Abogado aplicadas: iconos = sin-iconos, accent a oxblood con latón sólo de filete, `pendiente` en ámbar frío separado del latón, y la estrella cerrada en la grilla (no en el poste giratorio) para no reintroducir el cliché vetado.
+
+---
+
+## 11. Nota 2026-10-11 · correcciones tras la crítica (decisión de Lucas)
+
+Lucas pidió sistemas más profesionales, "tipo dashboard-CRM", sin animaciones decorativas. La identidad (paleta, Bebas + DM Sans, topbar, flat, square, latón de filete) NO cambió. Qué cambió y por qué:
+
+- **Movimiento serio.** Se quitaron el pulso de la línea "ahora" y el flash verde al confirmar un turno. Queda solo color en hover y foco, y el cambio de chip (Pendiente a Confirmado) que provoca el usuario. Los anillos del dashboard eran estáticos y siguen así.
+- **Turnos de 30 min.** El bloque ya no se expande al enfocar: muestra hora, estado y cliente, y es un botón que abre la ficha lateral del turno, donde viven el detalle y las acciones (confirmar, mover de silla, reprogramar, recordatorio). Los de 60+ min suman servicio y precio.
+- **Fichas en todo lo operable.** Turnos, tickets de ventas y clientes abren una ficha con todos sus datos; las acciones de demostración dicen "Demo: no se guardó nada". El cierre de la ficha es texto en Bebas (CERRAR), no un glifo: sigue siendo sin-iconos.
+- **Estados de carga.** `—` en vez de 0 y bloques estáticos mientras llegan los datos; aviso con "Reintentar" si falla.
+- **Menú en celular.** La tira superior muestra un degradé en el borde donde hay más secciones y centra la sección activa. El usuario de la demo ("Cuenta demo") va a la derecha de la tira y, en pantallas chicas, en un pie de página.
+- **Títulos = menú.** Los h1 coinciden con el rótulo del menú (Dashboard, Agenda, Conversaciones, Ventas, Contactos, Configuración).
+- **Color vs dato.** El punto de la cabecera de columna deja de ser oxblood (parecía alerta) y pasa a tinta cuando la silla está ocupada y verde cuando está libre.
+- **Excepción gris acotada (CLAUDE.md del workspace).** Son neutros por diseño, con rótulo de texto y contraste mayor a 4.5:1 (muted sobre subtle: 4.9:1): el chip de fidelidad "habitual" y el estado de turno "No vino".

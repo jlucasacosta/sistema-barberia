@@ -19,11 +19,13 @@ Aprendé a crear tu Agencia de IA y conseguir tu primer cliente. Eso lo trabajam
 
 ## Qué incluye
 - Dashboard con métricas del negocio (ocupación por silla, ranking de servicios, actividad)
-- Agenda (grilla del día con una columna por barbero)
+- Agenda (grilla del día con una columna por barbero; cada turno abre su ficha con detalle y acciones)
 - Conversaciones (inbox de clientes)
-- Ventas (tablero de cobros del día)
-- Contactos (clientes)
-- Configuración
+- Ventas (tablero de cobros del día; cada ticket abre su ficha)
+- Contactos (clientes; cada fila abre la ficha con todos sus datos)
+- Configuración (datos del local, barberos, servicios, horarios e interruptores de notificaciones)
+
+Todas las pantallas muestran `—` y bloques de carga mientras llegan los datos, y un aviso con "Reintentar" si la carga falla. Las acciones de las fichas son de demostración: dicen "Demo: no se guardó nada" y no persisten.
 
 ## Requisitos (instalá esto primero)
 
@@ -68,13 +70,14 @@ Todo el diseño (colores, tipografía, nombre de la marca, servicios y precios, 
 
 ## Cambiar los datos de ejemplo
 
-Los datos que ves (barberos, turnos, clientes, tickets, conversaciones) están en archivos `data.json`, uno por módulo:
+Los datos que ves (barberos, turnos, clientes, tickets, conversaciones, datos del local) están en archivos `data.json`, uno por módulo:
 
     modules/agenda/data.json
     modules/ventas/data.json
     modules/contactos/data.json
     modules/conversaciones/data.json
     modules/dashboard/data.json
+    modules/config/data.json
 
 Editá cualquiera de esos archivos y guardá: la pantalla se actualiza. Son de **solo lectura** para la app: si en la pantalla confirmás un turno o cobrás un ticket, el cambio vive solo en la memoria del navegador. Al recargar (F5) vuelve todo a lo que dice el JSON. Esto es a propósito: no hay base de datos ni se guarda nada.
 
@@ -82,7 +85,7 @@ Editá cualquiera de esos archivos y guardá: la pantalla se actualiza. Son de *
 
     app/            rutas de Next.js (una por pantalla)
     modules/        un módulo por pantalla: index.tsx (UI), api.ts (funciones), data.json (datos)
-    shell/          theme.ts (el diseño), navegación, fuentes y helpers de la agenda
+    shell/          theme.ts (el diseño), navegación, fuentes, helpers de la agenda, carga.tsx (estados de carga y error) y ficha-lateral.tsx (ficha de detalle)
     docs/           IMPLEMENTAR.md: guía para conectarlo a un backend real
     DISENO.md       ficha de diseño: por qué se ve como se ve
     .env.example    nombres de las variables de entorno (vacías)

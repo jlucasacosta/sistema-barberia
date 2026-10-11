@@ -81,7 +81,7 @@
         "Perfilado",
         "Aceite de barba"
       ],
-      "total": 800,
+      "total": 750,
       "metodo": "QR",
       "hora": "11:05",
       "estado": "cobrado"
@@ -235,42 +235,6 @@
     },
     {
       "id": "c20",
-      "cliente": "Nahuel Ojeda",
-      "barbero": "Ramiro",
-      "items": [
-        "Corte + barba"
-      ],
-      "total": 750,
-      "metodo": "Tarjeta",
-      "hora": "11:30",
-      "estado": "rechazado"
-    },
-    {
-      "id": "c21",
-      "cliente": "Dario Quinteros",
-      "barbero": "Tobias",
-      "items": [
-        "Fade"
-      ],
-      "total": 550,
-      "metodo": "Tarjeta",
-      "hora": "12:30",
-      "estado": "rechazado"
-    },
-    {
-      "id": "c22",
-      "cliente": "Matias Ferreyra",
-      "barbero": "Nicolas",
-      "items": [
-        "Corte clásico"
-      ],
-      "total": 450,
-      "metodo": "QR",
-      "hora": "13:00",
-      "estado": "rechazado"
-    },
-    {
-      "id": "c23",
       "cliente": "Emanuel Rios",
       "barbero": "Tobias",
       "items": [
@@ -282,7 +246,7 @@
       "estado": "cobrado"
     },
     {
-      "id": "c24",
+      "id": "c21",
       "cliente": "Santiago Correa",
       "barbero": "Ramiro",
       "items": [
@@ -292,10 +256,10 @@
       "total": 800,
       "metodo": "Tarjeta",
       "hora": "12:40",
-      "estado": "cobrado"
+      "estado": "rechazado"
     },
     {
-      "id": "c25",
+      "id": "c22",
       "cliente": "Joaquin Medina",
       "barbero": "Emiliano",
       "items": [
@@ -307,20 +271,20 @@
       "estado": "cobrado"
     },
     {
-      "id": "c26",
+      "id": "c23",
       "cliente": "Franco Duarte",
       "barbero": "Nicolas",
       "items": [
         "Fade",
         "Cera fijadora"
       ],
-      "total": 750,
+      "total": 850,
       "metodo": "Efectivo",
       "hora": "14:15",
       "estado": "cobrado"
     },
     {
-      "id": "c27",
+      "id": "c24",
       "cliente": "Agustin Ferrari",
       "barbero": "Tobias",
       "items": [
@@ -332,7 +296,7 @@
       "estado": "cobrado"
     },
     {
-      "id": "c28",
+      "id": "c25",
       "cliente": "Leandro Cardozo",
       "barbero": "Ramiro",
       "items": [
@@ -341,7 +305,7 @@
       "total": 300,
       "metodo": "QR",
       "hora": "15:20",
-      "estado": "cobrado"
+      "estado": "rechazado"
     }
   ]
 }

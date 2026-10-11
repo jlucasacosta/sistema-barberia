@@ -2,7 +2,7 @@ import "./globals.css"
 import type { ReactNode, CSSProperties } from "react"
 import { theme } from "@/shell/theme"
 import { fontClass } from "@/shell/fonts"
-import { Nav } from "@/shell/nav"
+import { Nav, UsuarioDemo } from "@/shell/nav"
 
 // Traduce el theme (declarativo) a variables CSS que Tailwind y globals.css consumen.
 // Los colores viajan como triplete "R G B" para que Tailwind pueda aplicarles
@@ -96,6 +96,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <main id="contenido" tabIndex={-1} className="flex-1 overflow-x-hidden p-[var(--pad)] outline-none">
             {children}
           </main>
+          {/* Pie del menu en pantallas donde la tira no muestra al usuario de la demo. */}
+          <footer className="border-t border-border px-[var(--pad)] py-3 lg:hidden">
+            <UsuarioDemo />
+          </footer>
         </div>
       </body>
     </html>

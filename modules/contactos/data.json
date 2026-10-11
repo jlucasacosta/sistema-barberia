@@ -65,7 +65,7 @@
       "nombre": "Cristian Maldonado",
       "telefono": "+54 9 299 517 8842",
       "email": "cristian.m@hotmail.com",
-      "ultimaVisita": "07/07",
+      "ultimaVisita": "08/07",
       "barberoFijo": "Emiliano",
       "servicioHabitual": "Ritual completo",
       "visitas": 11,
@@ -77,7 +77,7 @@
       "nombre": "Sergio Villalba",
       "telefono": "+54 9 388 214 6675",
       "email": "svillalba@gmail.com",
-      "ultimaVisita": "07/07",
+      "ultimaVisita": "08/07",
       "barberoFijo": "Ramiro",
       "servicioHabitual": "Perfilado",
       "visitas": 8,
@@ -89,7 +89,7 @@
       "nombre": "Pablo Zarate",
       "telefono": "+54 9 223 806 1159",
       "email": "pablo.zarate@yahoo.com",
-      "ultimaVisita": "07/07",
+      "ultimaVisita": "08/07",
       "barberoFijo": "Emiliano",
       "servicioHabitual": "Corte + barba",
       "visitas": 5,
@@ -101,7 +101,7 @@
       "nombre": "Marco Aramburu",
       "telefono": "+54 9 341 972 4408",
       "email": "m.aramburu@proton.me",
-      "ultimaVisita": "06/07",
+      "ultimaVisita": "08/07",
       "barberoFijo": "Tobias",
       "servicioHabitual": "Corte + barba",
       "visitas": 17,
@@ -113,7 +113,7 @@
       "nombre": "Lucas Ibarra",
       "telefono": "+54 9 351 338 5027",
       "email": "lucasibarra@outlook.com",
-      "ultimaVisita": "06/07",
+      "ultimaVisita": "08/07",
       "barberoFijo": "Nicolas",
       "servicioHabitual": "Corte + barba",
       "visitas": 2,
@@ -122,6 +122,78 @@
     },
     {
       "id": "11",
+      "nombre": "Santiago Correa",
+      "telefono": "+54 9 381 246 7783",
+      "email": "scorrea@outlook.com",
+      "ultimaVisita": "08/07",
+      "barberoFijo": "Ramiro",
+      "servicioHabitual": "Barba",
+      "visitas": 12,
+      "gasto": 6400,
+      "fidelidad": "vip"
+    },
+    {
+      "id": "12",
+      "nombre": "Joaquin Medina",
+      "telefono": "+54 9 341 559 8804",
+      "email": "joaquin.medina@hotmail.com",
+      "ultimaVisita": "08/07",
+      "barberoFijo": "Emiliano",
+      "servicioHabitual": "Corte + barba",
+      "visitas": 2,
+      "gasto": 1500,
+      "fidelidad": "nuevo"
+    },
+    {
+      "id": "13",
+      "nombre": "Franco Duarte",
+      "telefono": "+54 9 351 902 3346",
+      "email": "fduarte@gmail.com",
+      "ultimaVisita": "08/07",
+      "barberoFijo": "Nicolas",
+      "servicioHabitual": "Fade",
+      "visitas": 8,
+      "gasto": 4400,
+      "fidelidad": "habitual"
+    },
+    {
+      "id": "14",
+      "nombre": "Agustin Ferrari",
+      "telefono": "+54 9 342 118 6659",
+      "email": "agus.ferrari@proton.me",
+      "ultimaVisita": "08/07",
+      "barberoFijo": "Tobias",
+      "servicioHabitual": "Corte clásico",
+      "visitas": 15,
+      "gasto": 6750,
+      "fidelidad": "vip"
+    },
+    {
+      "id": "15",
+      "nombre": "Leandro Cardozo",
+      "telefono": "+54 9 388 640 2237",
+      "email": "lcardozo@yahoo.com",
+      "ultimaVisita": "08/07",
+      "barberoFijo": "Ramiro",
+      "servicioHabitual": "Perfilado",
+      "visitas": 4,
+      "gasto": 1200,
+      "fidelidad": "habitual"
+    },
+    {
+      "id": "16",
+      "nombre": "Emanuel Rios",
+      "telefono": "+54 9 264 337 9915",
+      "email": "emanuel.rios@gmail.com",
+      "ultimaVisita": "08/07",
+      "barberoFijo": "Tobias",
+      "servicioHabitual": "Corte clásico",
+      "visitas": 1,
+      "gasto": 450,
+      "fidelidad": "nuevo"
+    },
+    {
+      "id": "17",
       "nombre": "Gaston Rivero",
       "telefono": "+54 9 264 719 6683",
       "email": "grivero@hotmail.com",
@@ -133,7 +205,7 @@
       "fidelidad": "habitual"
     },
     {
-      "id": "12",
+      "id": "18",
       "nombre": "Rodrigo Cabral",
       "telefono": "+54 9 387 502 3318",
       "email": "rodri.cabral@gmail.com",
@@ -145,7 +217,7 @@
       "fidelidad": "habitual"
     },
     {
-      "id": "13",
+      "id": "19",
       "nombre": "Facundo Leiva",
       "telefono": "+54 9 291 447 9902",
       "email": "fleiva@outlook.com",
@@ -157,7 +229,7 @@
       "fidelidad": "vip"
     },
     {
-      "id": "14",
+      "id": "20",
       "nombre": "Andres Godoy",
       "telefono": "+54 9 342 615 7734",
       "email": "andres.godoy@yahoo.com",
@@ -169,7 +241,7 @@
       "fidelidad": "nuevo"
     },
     {
-      "id": "15",
+      "id": "21",
       "nombre": "Ezequiel Sosa",
       "telefono": "+54 9 358 209 4471",
       "email": "ezequiel.sosa@yahoo.com",
@@ -181,7 +253,7 @@
       "fidelidad": "vip"
     },
     {
-      "id": "16",
+      "id": "22",
       "nombre": "Federico Nunez",
       "telefono": "+54 9 341 880 2265",
       "email": "fnunez@proton.me",
@@ -193,7 +265,7 @@
       "fidelidad": "habitual"
     },
     {
-      "id": "17",
+      "id": "23",
       "nombre": "Bruno Ferre",
       "telefono": "+54 9 351 733 6690",
       "email": "brunoferre@gmail.com",
@@ -205,7 +277,7 @@
       "fidelidad": "habitual"
     },
     {
-      "id": "18",
+      "id": "24",
       "nombre": "Hernan Ledesma",
       "telefono": "+54 9 299 618 3327",
       "email": "h.ledesma@gmail.com",
@@ -217,7 +289,7 @@
       "fidelidad": "vip"
     },
     {
-      "id": "19",
+      "id": "25",
       "nombre": "Damian Roldan",
       "telefono": "+54 9 261 904 5518",
       "email": "damian.roldan@hotmail.com",
@@ -227,78 +299,6 @@
       "visitas": 5,
       "gasto": 3750,
       "fidelidad": "habitual"
-    },
-    {
-      "id": "20",
-      "nombre": "Santiago Correa",
-      "telefono": "+54 9 381 246 7783",
-      "email": "scorrea@outlook.com",
-      "ultimaVisita": "03/07",
-      "barberoFijo": "Ramiro",
-      "servicioHabitual": "Barba",
-      "visitas": 12,
-      "gasto": 6400,
-      "fidelidad": "vip"
-    },
-    {
-      "id": "21",
-      "nombre": "Joaquin Medina",
-      "telefono": "+54 9 341 559 8804",
-      "email": "joaquin.medina@hotmail.com",
-      "ultimaVisita": "02/07",
-      "barberoFijo": "Emiliano",
-      "servicioHabitual": "Corte + barba",
-      "visitas": 2,
-      "gasto": 1500,
-      "fidelidad": "nuevo"
-    },
-    {
-      "id": "22",
-      "nombre": "Franco Duarte",
-      "telefono": "+54 9 351 902 3346",
-      "email": "fduarte@gmail.com",
-      "ultimaVisita": "02/07",
-      "barberoFijo": "Nicolas",
-      "servicioHabitual": "Fade",
-      "visitas": 8,
-      "gasto": 4400,
-      "fidelidad": "habitual"
-    },
-    {
-      "id": "23",
-      "nombre": "Agustin Ferrari",
-      "telefono": "+54 9 342 118 6659",
-      "email": "agus.ferrari@proton.me",
-      "ultimaVisita": "02/07",
-      "barberoFijo": "Tobias",
-      "servicioHabitual": "Corte clásico",
-      "visitas": 15,
-      "gasto": 6750,
-      "fidelidad": "vip"
-    },
-    {
-      "id": "24",
-      "nombre": "Leandro Cardozo",
-      "telefono": "+54 9 388 640 2237",
-      "email": "lcardozo@yahoo.com",
-      "ultimaVisita": "01/07",
-      "barberoFijo": "Ramiro",
-      "servicioHabitual": "Perfilado",
-      "visitas": 4,
-      "gasto": 1200,
-      "fidelidad": "habitual"
-    },
-    {
-      "id": "25",
-      "nombre": "Emanuel Rios",
-      "telefono": "+54 9 264 337 9915",
-      "email": "emanuel.rios@gmail.com",
-      "ultimaVisita": "01/07",
-      "barberoFijo": "Tobias",
-      "servicioHabitual": "Corte clásico",
-      "visitas": 1,
-      "gasto": 450,
-      "fidelidad": "nuevo"
     },
     {
       "id": "26",

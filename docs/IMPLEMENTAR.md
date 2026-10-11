@@ -74,7 +74,7 @@ Cada módulo tiene un archivo `api.ts` con funciones que hoy leen un `data.json`
 | `contactos` | `getClientes()` | `clientes[]` | `clientes` |
 | `conversaciones` | `getHilos()` | `hilos[]` (cada hilo trae `mensajes[]`) | `conversaciones`, `mensajes` |
 | `dashboard` | `getOcupacion()`, `getRankingServicios()`, `getActividad()` | `ocupacion[]`, `rankingServicios[]`, `actividad[]` | vistas `v_ocupacion_hoy`, `v_ranking_servicios_hoy` y tabla `actividad` |
-| `config` | (no tiene `api.ts`) | (no tiene `data.json`) | `ajustes`, `notificaciones` |
+| `config` | `getLocal()`, `getNotificaciones()` (los barberos se piden con `getBarberos()` de `agenda`) | `local{}`, `notificaciones[]` | `ajustes`, `notificaciones` |
 
 Los **servicios** (corte, fade, barba, perfilado, combo, ritual) hoy viven en `shell/theme.ts` (`theme.servicios`), no en un `data.json`. En la base pasan a ser la tabla `servicios`.
 
@@ -211,7 +211,7 @@ create table public.actividad (
 );
 create index actividad_ocurrio_idx on public.actividad (ocurrio_at desc);
 
--- ---------- config (modules/config: hoy es estatico) ----------
+-- ---------- config (modules/config: Local y Notificacion) ----------
 create table public.ajustes (
   clave  text primary key,                           -- 'local.nombre', 'local.direccion', 'horario.apertura'...
   valor  jsonb not null
@@ -434,13 +434,10 @@ await reemplazar(
   leer("dashboard").actividad.map((a) => ({ ocurrio_at: aFecha(a.hora), texto: a.texto, tipo: a.tipo })),
 )
 
-// 8) Notificaciones de Config (hoy estan escritas dentro de modules/config/index.tsx)
-await guardar("notificaciones", [
-  { clave: "recordatorio_turno", label: "Recordatorio de turno por WhatsApp", activo: true },
-  { clave: "silla_libre", label: "Aviso de silla libre para clientes sin turno", activo: true },
-  { clave: "encuesta", label: "Encuesta post-servicio", activo: false },
-  { clave: "cumpleanos", label: "Promoción de cumpleaños del cliente", activo: true },
-])
+// 8) Config: datos del local y notificaciones (modules/config/data.json)
+const config = leer("config")
+await guardar("ajustes", Object.entries(config.local).map(([k, v]) => ({ clave: `local.${k}`, valor: v })))
+await guardar("notificaciones", config.notificaciones.map((n) => ({ clave: n.id, label: n.label, activo: n.activo })))
 console.log("Listo.")
 ```
 
@@ -686,6 +683,8 @@ Si ves la lista vacía y **sin error**, casi siempre es RLS: todavía no inicias
 Las demás funciones siguen el mismo patrón: `.from("tabla").select(...)`, chequear `error`, y mapear a la forma del tipo. Por ejemplo, `getTickets()` lee `tickets` con `barberos(nombre)` y devuelve `barbero: fila.barberos.nombre.split(" ")[0]`; `getOcupacion()` lee la vista `v_ocupacion_hoy`.
 
 ### 3.9 Lo que pasa con las acciones de la UI
+
+Cada pantalla carga sus datos con `useCarga` (`shell/carga.tsx`): mientras llegan muestra `—` y bloques de carga, y si la función de `api.ts` rechaza la promesa (un error de Supabase, por ejemplo) muestra el aviso con el botón "Reintentar". No hace falta tocar las pantallas: alcanza con que tu función lance el error. Los turnos, tickets y clientes abren una ficha lateral (`shell/ficha-lateral.tsx`) con todos los datos de la fila; sus acciones de demostración ("Reprogramar", "Enviar recordatorio", "Enviar comprobante"...) no guardan nada.
 
 En el demo, "Confirmar", "Mover silla", "Cobrar" y "Rechazar" solo cambian el estado en pantalla. Con backend real, cada una pasa a ser un `update` (por ejemplo `supabase.from("turnos").update({ estado: "confirmado" }).eq("id", id)`). Eso requiere agregar funciones nuevas en cada `api.ts` (`confirmarTurno`, `cobrarTicket`...). Es trabajo de tu implementación; el demo no las trae.
 
@@ -1003,5 +1002,6 @@ Ya tenés el recorrido completo: demo → base de datos → login → publicado 
 ### Qué se verificó y qué no
 
 - **Verificado:** el SQL de la sección 3.2 se ejecutó completo en un motor Postgres embebido (PGlite) cargando todos los datos de ejemplo de `data.json`: crea las 10 tablas y 2 vistas, la restricción anti-solape rechaza un turno superpuesto y deja pasar uno cancelado, y las vistas devuelven ocupación y ranking. La sintaxis de `supabase-js`, `@supabase/ssr`, `pg-boss` (incluido `schedule`, `work`, `send`) y de la API de OpenAI se contrastó con su documentación oficial el 2026-10-10.
+- **Actualización 2026-10-11:** se corrigieron datos de ejemplo (tickets rechazados, ocupación y ranking del dashboard calculados desde los turnos, fechas de última visita) y se sumó `modules/config/data.json`. Las columnas y los valores permitidos de las tablas no cambiaron, y el SQL no se volvió a ejecutar después de ese cambio.
 - **No verificado:** el envío real de WhatsApp (es un stub), los nombres exactos de botones de los paneles de Supabase, Railway y Vercel (cambian con el tiempo), la conexión del worker contra un proyecto real de Supabase y el comportamiento de `pg-boss` con cada tipo de pooler (la recomendación de usar modo sesión sale de la documentación, no de una prueba).
 - Licencia del repo: MIT. Podés usar y modificar este sistema libremente.

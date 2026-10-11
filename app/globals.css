@@ -66,14 +66,14 @@
     box-shadow: var(--shadow-card);
     border: var(--card-border);
   }
-  /* Chip square tipo cartel esmaltado. */
+  /* Chip square tipo cartel esmaltado. 12px: lleva datos (estados), no es rotulo decorativo. */
   .chip {
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
     border-radius: var(--badge-radius);
     padding: 0.125rem 0.5rem;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     line-height: 1.1rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -91,29 +91,29 @@
     font-size: 0.75rem;
     cursor: pointer;
   }
-  @media (pointer: coarse) {
-    .chip-btn { min-height: 2.75rem; }
+  /* Boton o enlace que no es chip: 28px con mouse, 44px en tactil o celular. */
+  .tap {
+    min-height: 1.75rem;
+  }
+  @media (pointer: coarse), (max-width: 767px) {
+    .chip-btn,
+    .tap {
+      min-height: 2.75rem;
+    }
   }
   /* Hueco vendible: crema con contorno punteado laton. */
   .libre {
     border: 1.5px dashed rgb(var(--laton) / 0.55);
     background: rgb(var(--subtle) / 0.5);
   }
+  /* Tira de menu que scrollea: sin barra visible (la pista es el degradé del borde). */
+  .sin-barra {
+    scrollbar-width: none;
+  }
+  .sin-barra::-webkit-scrollbar {
+    display: none;
+  }
 }
-
-/* La linea "ahora" late suave (laton). Es el frame que se graba. */
-@keyframes pulso-ahora {
-  0%, 100% { opacity: 0.85; }
-  50% { opacity: 0.45; }
-}
-.linea-ahora { animation: pulso-ahora 2.4s ease-in-out infinite; }
-
-/* Flash verde cuando un turno pasa a CONFIRMADO. */
-@keyframes flash-confirmar {
-  0% { background: rgb(var(--success) / 0.35); }
-  100% { background: transparent; }
-}
-.flash-confirmar { animation: flash-confirmar 850ms ease-out; }
 
 /* Foco visible para teclado: aro oxblood con separacion, sobre papel y sobre tintes. */
 :focus-visible {
@@ -121,18 +121,10 @@
   outline-offset: 2px;
 }
 
-/* Reduced motion: la linea queda quieta y el flash de confirmacion NO desaparece:
-   se cambia el fade de fondo por un aro verde fijo (~0.9s) que sigue marcando el cambio
-   de estado sin animar nada. */
-@keyframes aro-confirmar {
-  0%, 99% { outline: 2px solid rgb(var(--success)); outline-offset: -2px; }
-  100% { outline: 0 solid transparent; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .linea-ahora { animation: none; opacity: 0.85; }
-  .flash-confirmar { animation: aro-confirmar 900ms steps(1, end); }
-  html { scroll-behavior: auto; }
-}
+/* MOVIMIENTO: serio, sin decoracion (decision de Lucas, 2026-10-11). Este archivo no define
+   animaciones ni keyframes: ni la linea "ahora" que latia ni el flash verde al confirmar.
+   Lo unico que se mueve es feedback funcional: color en hover y foco, y los cambios de
+   estado que el usuario provoca (el chip pasa de Pendiente a Confirmado). */
 
 html {
   -webkit-font-smoothing: antialiased;

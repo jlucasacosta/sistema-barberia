@@ -1,0 +1,30 @@
+{
+  "local": {
+    "direccion": "Pasaje del Filo 458, Rosario",
+    "telefono": "+54 9 341 672 0198",
+    "instagram": "@navaja.barbershop",
+    "dias": "Lunes a sábado"
+  },
+  "notificaciones": [
+    {
+      "id": "recordatorio_turno",
+      "label": "Recordatorio de turno por WhatsApp",
+      "activo": true
+    },
+    {
+      "id": "silla_libre",
+      "label": "Aviso de silla libre para clientes sin turno",
+      "activo": true
+    },
+    {
+      "id": "encuesta",
+      "label": "Encuesta post-servicio",
+      "activo": false
+    },
+    {
+      "id": "cumpleanos",
+      "label": "Promoción de cumpleaños del cliente",
+      "activo": true
+    }
+  ]
+}
