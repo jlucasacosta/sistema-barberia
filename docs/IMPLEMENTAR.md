@@ -113,7 +113,7 @@ create extension if not exists btree_gist with schema extensions;
 -- ---------- servicios (hoy viven en shell/theme.ts -> servicios) ----------
 create table public.servicios (
   id         text primary key,                       -- 'corte', 'fade', 'barba', 'perfilado', 'combo', 'ritual'
-  label      text not null,                          -- 'Corte clasico'
+  label      text not null,                          -- 'Corte clásico'
   dur_min    integer not null check (dur_min > 0),   -- define el ALTO del bloque en la agenda
   precio     integer not null check (precio >= 0),   -- pesos enteros
   tinte      text not null check (tinte in ('corte', 'barba', 'combo'))
@@ -172,7 +172,7 @@ create table public.tickets (
   cliente_id  text references public.clientes (id) on delete set null,
   cliente     text not null,
   barbero_id  text not null references public.barberos (id) on delete restrict,
-  items       text[] not null default '{}',          -- ['Corte clasico', 'Cera fijadora']
+  items       text[] not null default '{}',          -- ['Corte clásico', 'Cera fijadora']
   total       integer not null check (total >= 0),
   metodo      text not null check (metodo in ('Efectivo', 'Tarjeta', 'Transferencia', 'QR')),
   fecha       date not null default (now() at time zone 'America/Argentina/Buenos_Aires')::date,
@@ -333,7 +333,7 @@ const sumarMin = (hhmm, min) => {
 
 // 1) Servicios: salen de shell/theme.ts (si cambias precios alla, cambialos aca tambien).
 const servicios = [
-  { id: "corte", label: "Corte clasico", dur_min: 30, precio: 450, tinte: "corte" },
+  { id: "corte", label: "Corte clásico", dur_min: 30, precio: 450, tinte: "corte" },
   { id: "fade", label: "Fade", dur_min: 30, precio: 550, tinte: "corte" },
   { id: "barba", label: "Barba", dur_min: 30, precio: 350, tinte: "barba" },
   { id: "perfilado", label: "Perfilado", dur_min: 30, precio: 300, tinte: "barba" },
@@ -439,7 +439,7 @@ await guardar("notificaciones", [
   { clave: "recordatorio_turno", label: "Recordatorio de turno por WhatsApp", activo: true },
   { clave: "silla_libre", label: "Aviso de silla libre para clientes sin turno", activo: true },
   { clave: "encuesta", label: "Encuesta post-servicio", activo: false },
-  { clave: "cumpleanos", label: "Promocion de cumpleanos del cliente", activo: true },
+  { clave: "cumpleanos", label: "Promoción de cumpleaños del cliente", activo: true },
 ])
 console.log("Listo.")
 ```

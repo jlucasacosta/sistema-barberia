@@ -9,7 +9,7 @@ import { precio } from "@/shell/agenda"
 const barberos = [
   { nombre: "Tobias Arrieta", rol: "Barbero senior · Fades y diseños" },
   { nombre: "Ramiro Vega", rol: "Barbero · Barba y navaja" },
-  { nombre: "Nicolas Baez", rol: "Barbero · Corte clasico" },
+  { nombre: "Nicolas Baez", rol: "Barbero · Corte clásico" },
   { nombre: "Emiliano Sarli", rol: "Barbero senior · Ritual completo" },
 ]
 
@@ -116,7 +116,7 @@ function contenido(s: string) {
         <Campo label="Apertura" valor={theme.agenda.apertura} />
         <Campo label="Cierre" valor={theme.agenda.cierre} />
         <Campo label="Duración de franja" valor={`${theme.agenda.franjaMin} min`} />
-        <Campo label="Dias" valor="Lunes a sabado" />
+        <Campo label="Días" valor="Lunes a sábado" />
       </div>
     )
   }

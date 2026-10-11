@@ -5,7 +5,7 @@
       "cliente": "Ivan Peralta",
       "barbero": "Tobias",
       "items": [
-        "Corte clasico"
+        "Corte clásico"
       ],
       "total": 450,
       "metodo": "Efectivo",
@@ -17,7 +17,7 @@
       "cliente": "Alejo Barrios",
       "barbero": "Nicolas",
       "items": [
-        "Corte clasico",
+        "Corte clásico",
         "Cera fijadora"
       ],
       "total": 750,
@@ -54,7 +54,7 @@
       "cliente": "Tomas Aguirre",
       "barbero": "Nicolas",
       "items": [
-        "Corte clasico"
+        "Corte clásico"
       ],
       "total": 450,
       "metodo": "Transferencia",
@@ -104,7 +104,7 @@
       "barbero": "Tobias",
       "items": [
         "Corte + barba",
-        "Shampoo solido"
+        "Shampoo sólido"
       ],
       "total": 1050,
       "metodo": "Tarjeta",
@@ -140,7 +140,7 @@
       "cliente": "Rodrigo Cabral",
       "barbero": "Nicolas",
       "items": [
-        "Corte clasico"
+        "Corte clásico"
       ],
       "total": 450,
       "metodo": "Tarjeta",
@@ -190,7 +190,7 @@
       "cliente": "Federico Nunez",
       "barbero": "Nicolas",
       "items": [
-        "Corte clasico"
+        "Corte clásico"
       ],
       "total": 450,
       "metodo": "QR",
@@ -262,7 +262,7 @@
       "cliente": "Matias Ferreyra",
       "barbero": "Nicolas",
       "items": [
-        "Corte clasico"
+        "Corte clásico"
       ],
       "total": 450,
       "metodo": "QR",
@@ -274,7 +274,7 @@
       "cliente": "Emanuel Rios",
       "barbero": "Tobias",
       "items": [
-        "Corte clasico"
+        "Corte clásico"
       ],
       "total": 450,
       "metodo": "Efectivo",
@@ -324,7 +324,7 @@
       "cliente": "Agustin Ferrari",
       "barbero": "Tobias",
       "items": [
-        "Corte clasico"
+        "Corte clásico"
       ],
       "total": 450,
       "metodo": "Transferencia",

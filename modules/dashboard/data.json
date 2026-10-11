@@ -31,7 +31,7 @@
   ],
   "rankingServicios": [
     {
-      "label": "Corte clasico",
+      "label": "Corte clásico",
       "valor": 9
     },
     {
@@ -58,7 +58,7 @@
   "actividad": [
     {
       "hora": "18:02",
-      "texto": "Damian Roldan reservo Corte + barba con Ramiro",
+      "texto": "Damian Roldan reservó Corte + barba con Ramiro",
       "tipo": "turno"
     },
     {
@@ -68,7 +68,7 @@
     },
     {
       "hora": "17:10",
-      "texto": "Federico Nunez confirmo turno de las 17:30",
+      "texto": "Federico Nunez confirmó turno de las 17:30",
       "tipo": "turno"
     },
     {
@@ -93,7 +93,7 @@
     },
     {
       "hora": "15:12",
-      "texto": "Andres Godoy (cliente nuevo) reservo Barba",
+      "texto": "Andres Godoy (cliente nuevo) reservó Barba",
       "tipo": "turno"
     },
     {
@@ -113,7 +113,7 @@
     },
     {
       "hora": "11:30",
-      "texto": "Nahuel Ojeda cancelo su turno de las 11:30",
+      "texto": "Nahuel Ojeda canceló su turno de las 11:30",
       "tipo": "rechazo"
     }
   ]

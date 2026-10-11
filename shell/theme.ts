@@ -95,7 +95,7 @@ export const navaja: Theme = {
     franjaPx: 58,
   },
   servicios: {
-    corte: { label: "Corte clasico", dur: 30, precio: 450, tinte: "corte" },
+    corte: { label: "Corte clásico", dur: 30, precio: 450, tinte: "corte" },
     fade: { label: "Fade", dur: 30, precio: 550, tinte: "corte" },
     barba: { label: "Barba", dur: 30, precio: 350, tinte: "barba" },
     perfilado: { label: "Perfilado", dur: 30, precio: 300, tinte: "barba" },

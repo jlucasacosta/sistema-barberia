@@ -11,12 +11,12 @@
       "mensajes": [
         {
           "de": "cliente",
-          "texto": "Hola! Tienen lugar hoy a la manana?",
+          "texto": "¡Hola! ¿Tienen lugar hoy a la mañana?",
           "hora": "09:02"
         },
         {
           "de": "local",
-          "texto": "Buenas Gaston! Si, 11:00 con Tobias. Corte + barba?",
+          "texto": "¡Buenas Gaston! Sí, 11:00 con Tobias. ¿Corte + barba?",
           "hora": "09:08"
         },
         {
@@ -31,23 +31,23 @@
       "cliente": "Ezequiel Sosa",
       "inicial": "ES",
       "canal": "Instagram",
-      "preview": "Se puede pagar con QR?",
+      "preview": "¿Se puede pagar con QR?",
       "hora": "08:47",
       "sinLeer": 1,
       "mensajes": [
         {
           "de": "cliente",
-          "texto": "Buenas, cuanto sale la barba?",
+          "texto": "Buenas, ¿cuánto sale la barba?",
           "hora": "08:40"
         },
         {
           "de": "local",
-          "texto": "Hola Ezequiel! La barba $350, perfilado $300.",
+          "texto": "¡Hola Ezequiel! La barba $350, perfilado $300.",
           "hora": "08:44"
         },
         {
           "de": "cliente",
-          "texto": "Se puede pagar con QR?",
+          "texto": "¿Se puede pagar con QR?",
           "hora": "08:47"
         }
       ]
@@ -57,23 +57,23 @@
       "cliente": "Andres Godoy",
       "inicial": "AG",
       "canal": "WhatsApp",
-      "preview": "Primera vez que voy, gracias!",
+      "preview": "¡Primera vez que voy, gracias!",
       "hora": "08:20",
       "sinLeer": 0,
       "mensajes": [
         {
           "de": "cliente",
-          "texto": "Me recomendaron el lugar, tienen turno hoy?",
+          "texto": "Me recomendaron el lugar, ¿tienen turno hoy?",
           "hora": "08:10"
         },
         {
           "de": "local",
-          "texto": "Bienvenido! 14:30 con Emiliano libre.",
+          "texto": "¡Bienvenido! 14:30 con Emiliano libre.",
           "hora": "08:15"
         },
         {
           "de": "cliente",
-          "texto": "Primera vez que voy, gracias!",
+          "texto": "¡Primera vez que voy, gracias!",
           "hora": "08:20"
         }
       ]
@@ -89,7 +89,7 @@
       "mensajes": [
         {
           "de": "local",
-          "texto": "Marco, se nos corrio la agenda. Te paso a las 15?",
+          "texto": "Marco, se nos corrió la agenda. ¿Te paso a las 15?",
           "hora": "Ayer"
         },
         {
@@ -104,13 +104,13 @@
       "cliente": "Bruno Ferre",
       "inicial": "BF",
       "canal": "Instagram",
-      "preview": "Tienen cera fijadora en venta?",
+      "preview": "¿Tienen cera fijadora en venta?",
       "hora": "Ayer",
       "sinLeer": 1,
       "mensajes": [
         {
           "de": "cliente",
-          "texto": "Tienen cera fijadora en venta?",
+          "texto": "¿Tienen cera fijadora en venta?",
           "hora": "Ayer"
         }
       ]
@@ -141,18 +141,18 @@
       "cliente": "Federico Nunez",
       "inicial": "FN",
       "canal": "WhatsApp",
-      "preview": "Puedo llevar a mi hijo tambien?",
+      "preview": "¿Puedo llevar a mi hijo también?",
       "hora": "Ayer",
       "sinLeer": 3,
       "mensajes": [
         {
           "de": "cliente",
-          "texto": "Hola, atienden ninos?",
+          "texto": "Hola, ¿atienden niños?",
           "hora": "Ayer"
         },
         {
           "de": "cliente",
-          "texto": "Puedo llevar a mi hijo tambien?",
+          "texto": "¿Puedo llevar a mi hijo también?",
           "hora": "Ayer"
         }
       ]
@@ -162,18 +162,18 @@
       "cliente": "Lucas Ibarra",
       "inicial": "LI",
       "canal": "Instagram",
-      "preview": "Que horario cierran los sabados?",
+      "preview": "¿Qué horario cierran los sábados?",
       "hora": "Mar",
       "sinLeer": 0,
       "mensajes": [
         {
           "de": "cliente",
-          "texto": "Que horario cierran los sabados?",
+          "texto": "¿Qué horario cierran los sábados?",
           "hora": "Mar"
         },
         {
           "de": "local",
-          "texto": "Sabados 09:00 a 18:00.",
+          "texto": "Sábados 09:00 a 18:00.",
           "hora": "Mar"
         }
       ]
@@ -183,18 +183,18 @@
       "cliente": "Sergio Villalba",
       "inicial": "SV",
       "canal": "WhatsApp",
-      "preview": "El aceite de barba quedo barbaro",
+      "preview": "El aceite de barba quedó bárbaro",
       "hora": "Mar",
       "sinLeer": 0,
       "mensajes": [
         {
           "de": "cliente",
-          "texto": "El aceite de barba quedo barbaro",
+          "texto": "El aceite de barba quedó bárbaro",
           "hora": "Mar"
         },
         {
           "de": "local",
-          "texto": "Que bueno Sergio! Cualquier cosa avisanos.",
+          "texto": "¡Qué bueno Sergio! Cualquier cosa avisanos.",
           "hora": "Mar"
         }
       ]
@@ -215,7 +215,7 @@
         },
         {
           "de": "local",
-          "texto": "Perfecto, sabado 10:00 con Emiliano.",
+          "texto": "Perfecto, sábado 10:00 con Emiliano.",
           "hora": "Lun"
         }
       ]
@@ -225,13 +225,13 @@
       "cliente": "Pablo Zarate",
       "inicial": "PZ",
       "canal": "Instagram",
-      "preview": "Hacen diseno con maquina?",
+      "preview": "¿Hacen diseño con máquina?",
       "hora": "Lun",
       "sinLeer": 1,
       "mensajes": [
         {
           "de": "cliente",
-          "texto": "Hacen diseno con maquina?",
+          "texto": "¿Hacen diseño con máquina?",
           "hora": "Lun"
         }
       ]
@@ -241,7 +241,7 @@
       "cliente": "Julian Escobar",
       "inicial": "JE",
       "canal": "WhatsApp",
-      "preview": "Perfecto, ahi confirmo",
+      "preview": "Perfecto, ahí confirmo",
       "hora": "Lun",
       "sinLeer": 0,
       "mensajes": [
@@ -252,7 +252,7 @@
         },
         {
           "de": "cliente",
-          "texto": "Perfecto, ahi confirmo",
+          "texto": "Perfecto, ahí confirmo",
           "hora": "Lun"
         }
       ]
@@ -283,13 +283,13 @@
       "cliente": "Agustin Ferrari",
       "inicial": "AF",
       "canal": "Instagram",
-      "preview": "Buenisimo, gracias por la atencion",
+      "preview": "Buenísimo, gracias por la atención",
       "hora": "Dom",
       "sinLeer": 0,
       "mensajes": [
         {
           "de": "cliente",
-          "texto": "Buenisimo, gracias por la atencion",
+          "texto": "Buenísimo, gracias por la atención",
           "hora": "Dom"
         }
       ]
