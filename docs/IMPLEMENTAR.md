@@ -4,6 +4,8 @@ Esta guía te lleva de "clono el demo" a "mi barbería funcionando con datos rea
 
 > **Importante:** este repo es un demo **frontend** con datos de ejemplo. No trae backend ni dependencias de Supabase, pg-boss ni IA. Esta guía **describe** cómo agregarlos en **tu** copia. El código de las secciones 3 a 6 es de ejemplo: lo escribís vos en tu clon, no está en el repo.
 
+> **¿Vas por el camino del curso (Claude Code con conectores)?** Esta guía es el **manual de referencia**: explica cada pieza y trae el código. Para hacerlo con Claude manejando tus cuentas de Supabase, Vercel y Railway, seguí [`RECETA-CLAUDE.md`](RECETA-CLAUDE.md): son los mismos pasos, convertidos en pedidos para copiar y pegar. Los SQL ya vienen como archivos en [`sql/`](sql/).
+
 ---
 
 ## 0. Qué vas a lograr, en qué orden y cuánto tarda
@@ -97,7 +99,7 @@ Dos detalles del demo que conviene saber antes de armar las tablas:
 
 ### 3.2 Crear las tablas
 
-En el panel: **SQL Editor → New query**, pegá este SQL entero y apretá **Run**.
+En el panel: **SQL Editor → New query**, pegá este SQL entero y apretá **Run**. (El mismo SQL está como archivo en [`sql/01-esquema.sql`](sql/01-esquema.sql), por si preferís que Claude lo aplique con el conector de Supabase.)
 
 Está derivado de los tipos reales de `api.ts` y de las claves de cada `data.json`. Respeta los estados reales del demo (`pendiente | confirmado | cancelado | no-vino` para turnos; `pendiente | cobrado | rechazado` para ventas), activa **RLS** (seguridad por filas) en todas las tablas y no permite que un barbero tenga dos turnos superpuestos.
 
@@ -295,7 +297,9 @@ Verificá en **Table Editor** que aparecen las 10 tablas.
 
 Para ver tu sistema lleno desde el primer día, cargá los datos del demo.
 
-**Opción A (recomendada): un script.** Primero hacé la sección 3.5 (variables de entorno) y 3.6 (instalar supabase-js). Después creá el archivo `scripts/importar-datos.mjs` con este contenido:
+**Opción 0 (la más corta): un archivo SQL.** [`sql/02-datos-ejemplo.sql`](sql/02-datos-ejemplo.sql) carga los mismos datos que el script de la opción A, ya traducidos a las tablas, y no necesita la clave `service_role`. Pegalo en **SQL Editor → Run**, o pedile a Claude que lo aplique con el conector de Supabase. Se corre **una sola vez** sobre tablas vacías: si la base ya tiene datos, se frena con un mensaje en vez de duplicar. Además enlaza `cliente_id` en turnos, tickets y conversaciones (el script no lo hace), así que el worker de la sección 4 encuentra los teléfonos. Es una copia de `modules/*/data.json` al día de hoy: si cambiás esos archivos, usá la opción A.
+
+**Opción A: un script.** Primero hacé la sección 3.5 (variables de entorno) y 3.6 (instalar supabase-js). Después creá el archivo `scripts/importar-datos.mjs` con este contenido:
 
 ```js
 // scripts/importar-datos.mjs  (lo creas VOS en tu clon; no viene en el repo)
@@ -672,11 +676,7 @@ export async function getTurnos(): Promise<Turno[]> {
 }
 ```
 
-Para que un error no deje la pantalla muda, en `modules/agenda/index.tsx` agregá un `.catch` donde se llama a la función (es una línea de UI, no cambia ninguna firma):
-
-```ts
-getTurnos().then(setTurnos).catch(() => setTurnos([]))
-```
+No hace falta tocar la pantalla para manejar errores: `modules/agenda/index.tsx` ya carga con `useCarga`, que muestra el aviso con "Reintentar" cuando la función **lanza** un error. Por eso la función de arriba hace `throw` en vez de devolver una lista vacía.
 
 Si ves la lista vacía y **sin error**, casi siempre es RLS: todavía no iniciaste sesión (ver sección 8).
 
@@ -819,7 +819,7 @@ process.on("SIGTERM", async () => {
 })
 ```
 
-Los turnos de ejemplo no traen `cliente_id`, así que el teléfono llega vacío: cuando crees turnos reales, guardá el id del cliente para que el worker encuentre su teléfono.
+Si cargaste los datos con el script de la opción A, los turnos de ejemplo no traen `cliente_id` y el teléfono llega vacío (con `sql/02-datos-ejemplo.sql` sí vienen enlazados). Cuando crees turnos reales, guardá siempre el id del cliente para que el worker encuentre su teléfono.
 
 Cómo leerlo: `schedule` programa un trabajo con cron; `work` registra quién lo procesa; si el handler lanza un error, pg-boss lo reintenta (por defecto 2 veces); `send` encola un trabajo nuevo. La columna `recordatorio_enviado_at` (ya incluida en el SQL de la sección 3.2) evita avisar dos veces.
 
@@ -1003,5 +1003,6 @@ Ya tenés el recorrido completo: demo → base de datos → login → publicado 
 
 - **Verificado:** el SQL de la sección 3.2 se ejecutó completo en un motor Postgres embebido (PGlite) cargando todos los datos de ejemplo de `data.json`: crea las 10 tablas y 2 vistas, la restricción anti-solape rechaza un turno superpuesto y deja pasar uno cancelado, y las vistas devuelven ocupación y ranking. La sintaxis de `supabase-js`, `@supabase/ssr`, `pg-boss` (incluido `schedule`, `work`, `send`) y de la API de OpenAI se contrastó con su documentación oficial el 2026-10-10.
 - **Actualización 2026-10-11:** se corrigieron datos de ejemplo (tickets rechazados, ocupación y ranking del dashboard calculados desde los turnos, fechas de última visita) y se sumó `modules/config/data.json`. Las columnas y los valores permitidos de las tablas no cambiaron. Después de ese cambio se volvió a ejecutar todo en PGlite (SQL de 3.2, script de 3.4 y SQL de 3.10) con los `data.json` actuales: carga sin errores (6 servicios, 4 barberos, 30 clientes, 22 turnos, 25 tickets, 14 conversaciones, 28 mensajes, 12 actividades, 4 ajustes, 4 notificaciones), las vistas coinciden con el dashboard (ocupación 27% a 41%) y RLS deja a un visitante anónimo en 0 filas.
+- **Actualización 2026-10-12:** se sumaron `sql/01-esquema.sql` (copia exacta del SQL de 3.2) y `sql/02-datos-ejemplo.sql` (los datos de `data.json` ya traducidos). Se ejecutaron en PGlite y dejan las mismas tablas, filas y valores que el script de 3.4; además enlazan `cliente_id` en turnos, tickets y conversaciones, y ordenan el inbox por el último mensaje. La segunda corrida de `02` se frena y un visitante anónimo ve 0 filas. Se sumó también [`RECETA-CLAUDE.md`](RECETA-CLAUDE.md).
 - **No verificado:** el envío real de WhatsApp (es un stub), los nombres exactos de botones de los paneles de Supabase, Railway y Vercel (cambian con el tiempo), la conexión del worker contra un proyecto real de Supabase y el comportamiento de `pg-boss` con cada tipo de pooler (la recomendación de usar modo sesión sale de la documentación, no de una prueba).
 - Licencia del repo: MIT. Podés usar y modificar este sistema libremente.

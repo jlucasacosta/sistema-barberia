@@ -86,7 +86,8 @@ Editá cualquiera de esos archivos y guardá: la pantalla se actualiza. Son de *
     app/            rutas de Next.js (una por pantalla)
     modules/        un módulo por pantalla: index.tsx (UI), api.ts (funciones), data.json (datos)
     shell/          theme.ts (el diseño), navegación, fuentes, helpers de la agenda, carga.tsx (estados de carga y error) y ficha-lateral.tsx (ficha de detalle)
-    docs/           IMPLEMENTAR.md: guía para conectarlo a un backend real
+    docs/           RECETA-CLAUDE.md (paso a paso con Claude Code), IMPLEMENTAR.md (manual para conectarlo a un backend real) y sql/ (esquema y datos de ejemplo para Supabase)
+    CLAUDE.md       contexto y reglas para Claude Code cuando trabaja sobre tu copia
     DISENO.md       ficha de diseño: por qué se ve como se ve
     .env.example    nombres de las variables de entorno (vacías)
     LICENSE         licencia MIT
@@ -100,7 +101,12 @@ Este repo es un demo: no incluye backend. Si querés convertirlo en tu sistema r
 3. **Railway + pg-boss**: tareas automáticas, por ejemplo recordatorios de turnos por WhatsApp.
 4. **OpenAI o Gemini**: sugerir respuestas en Conversaciones, siempre desde el servidor.
 
-La guía paso a paso, con el SQL de las tablas ya armado para este sistema, está en [`docs/IMPLEMENTAR.md`](docs/IMPLEMENTAR.md). Es una guía que **describe** cómo hacerlo: el repo sigue siendo un demo frontend sin backend conectado.
+Hay dos formas de hacerlo, y se complementan:
+
+- **Con Claude Code (el camino del curso):** [`docs/RECETA-CLAUDE.md`](docs/RECETA-CLAUDE.md). Son los pasos convertidos en pedidos para copiar y pegar, usando los conectores de Supabase, Vercel y Railway que armaste en el curso de la Agencia de IA. El SQL de las tablas y los datos de ejemplo ya vienen como archivos en [`docs/sql/`](docs/sql/).
+- **Manual de referencia:** [`docs/IMPLEMENTAR.md`](docs/IMPLEMENTAR.md). Explica cada pieza y trae el código de ejemplo.
+
+Las dos son guías que **describen** cómo hacerlo: el repo sigue siendo un demo frontend sin backend conectado.
 
 ## Licencia
 
